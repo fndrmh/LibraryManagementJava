@@ -1,0 +1,14 @@
+bin/
+meta/
+*.class
+*.jar
+
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+.vscode/
+.code-workspace
