@@ -9,9 +9,14 @@ public class Loan {
   private Date dueDate;
 
 
-  public void getBook     (Book book)          {this.book=book;}
-  public void getStudent  (Student student) {this.student=student;}
-  public void getLoanDate (Date loanDate)  {this.loanDate=loanDate;}
-  public void getDueDate  (Date dueDate)    {this.dueDate=dueDate;}
-
+//Seterr
+  public void    setBook     (Book book)       {this.book=book;}
+  public void    setStudent  (Student student) {this.student=student;}
+  public void    setLoanDate (Date loanDate)   {this.loanDate=loanDate;}
+  public void    setDueDate  (Date dueDate)    {this.dueDate=dueDate;}
+//getter
+  public Book    getBook()     {return this.book;}
+  public Student getStudent()  {return this.student;}
+  public Date    getLoanDate() {return this.loanDate;}
+  public Date    getDueDate()  {return this.dueDate;}
 }
