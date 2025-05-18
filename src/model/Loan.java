@@ -9,6 +9,16 @@ public class Loan {
   private Date dueDate;
 
 
+
+  public Loan(Book book,Student student,Date loanDate,Date dueDate){
+   this.book=book;
+   this.student=student;
+   this.loanDate=loanDate;
+   this.dueDate=dueDate;
+  }
+
+
+  
 //Seterr
   public void    setBook     (Book book)       {this.book=book;}
   public void    setStudent  (Student student) {this.student=student;}
@@ -19,4 +29,5 @@ public class Loan {
   public Student getStudent()  {return this.student;}
   public Date    getLoanDate() {return this.loanDate;}
   public Date    getDueDate()  {return this.dueDate;}
+
 }
