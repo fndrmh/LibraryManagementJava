@@ -5,7 +5,7 @@ public abstract class Student {
   protected  String firstName;
   protected  String lastName;
   protected  String major;
-Student(String studentId,String firstName,String lastName,String major)
+public Student(String studentId,String firstName,String lastName,String major)
 {
       this.studentId=studentId;
       this.firstName=firstName;

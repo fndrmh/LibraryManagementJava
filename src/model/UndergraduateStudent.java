@@ -9,7 +9,7 @@ public class UndergraduateStudent extends Student {
     throw new UnsupportedOperationException("Unimplemented method 'getStudentDetails'");
   }
 
-    UndergraduateStudent(String studentId,String firstName,String lastName,String major,int enrollmentYear)
+    public UndergraduateStudent(String studentId,String firstName,String lastName,String major,int enrollmentYear)
     {
         super(studentId,firstName,lastName,major);
         this.enrollmentYear=enrollmentYear;

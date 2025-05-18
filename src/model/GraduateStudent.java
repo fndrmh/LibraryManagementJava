@@ -8,5 +8,10 @@ public class GraduateStudent extends Student {
     // TODO: Implement method 'getStudentDetails' for GraduateStudent.
     throw new UnsupportedOperationException("Unimplemented method 'getStudentDetails'");
   }
-
+public GraduateStudent(String studentId,String firstName,String lastName,String major,String superString,String theString)
+{
+      super(studentId, firstName, lastName, major);
+      this.supervisor=supervisor;
+      this.thesisTitle=thesisTitle;
+}
 }
