@@ -1,10 +1,16 @@
 package model;
 
 public abstract class Student {
-  private String studentId;
-  private String firstName;
-  private String lastName;
-  private String major;
-
+  protected  String studentId;
+  protected  String firstName;
+  protected  String lastName;
+  protected  String major;
+public Student(String studentId,String firstName,String lastName,String major)
+{
+      this.studentId=studentId;
+      this.firstName=firstName;
+      this.lastName=lastName;
+      this.major=major;
+}
   public abstract void getStudentDetails();
 }
