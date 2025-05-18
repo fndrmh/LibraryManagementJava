@@ -6,8 +6,12 @@ import model.*;
 public class UserInterface {
 
   public void displayMainMenu() {
-    // TODO: Implement method 'displayMainMenu'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayMainMenu'");
+    System.out.println("# Library Management Project");
+    System.out.println("1. Manage Users");
+    System.out.println("2. Manage Books");
+    System.out.println("3. Loans ");
+    System.out.println("4. Reports");
+    System.out.println("0. Exit");
   }
 
   public void displayMemberMenu() {
