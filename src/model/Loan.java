@@ -18,7 +18,7 @@ public class Loan {
   }
 
 
-  
+
 //Seterr
   public void    setBook     (Book book)       {this.book=book;}
   public void    setStudent  (Student student) {this.student=student;}
