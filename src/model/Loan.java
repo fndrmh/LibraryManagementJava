@@ -8,23 +8,10 @@ public class Loan {
   private Date loanDate;
   private Date dueDate;
 
-  public void getBook() {
-    // TODO: Implement method 'getBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBook'");
-  }
 
-  public void getStudent() {
-    // TODO: Implement method 'getStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudent'");
-  }
+  public void getBook     (Book book)          {this.book=book;}
+  public void getStudent  (Student student) {this.student=student;}
+  public void getLoanDate (Date loanDate)  {this.loanDate=loanDate;}
+  public void getDueDate  (Date dueDate)    {this.dueDate=dueDate;}
 
-  public void getLoanDate() {
-    // TODO: Implement method 'getLoanDate'.
-    throw new UnsupportedOperationException("Unimplemented method 'getLoanDate'");
-  }
-
-  public void getDueDate() {
-    // TODO: Implement method 'getDueDate'.
-    throw new UnsupportedOperationException("Unimplemented method 'getDueDate'");
-  }
 }
