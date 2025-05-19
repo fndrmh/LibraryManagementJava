@@ -2,20 +2,59 @@ package view;
 
 import java.util.List;
 import model.*;
+import java.util.Scanner;
 
 public class UserInterface {
+    public void displayMainMenu() {
+        while (true) {
+            printMainMenu();
+            Scanner inputin = new Scanner(System.in);
+            int input = inputin.nextInt();
+            switch (input) {
+                case 1:
+                    displayMemberMenu();
+                    break;
+                case 2:
+                    displayBookMenu();
+                    break;
+                case 3:
+                    displayLoanMenu();
+                    break;
+                case 4:
+                    displayReportMenu();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("<<------------------------------------->>");
+                    System.out.println("<<<<Please select the correct option!>>>>");
+                    System.out.println("<<------------------------------------->>");
+                    break;
+            }
+        }
+    }
 
-  public void displayMainMenu() {
-    // TODO: Implement method 'displayMainMenu'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayMainMenu'");
-  }
+    public void printMainMenu() {
+    System.out.println("░░░░░░░░░░░░ ██╗     ███╗   ███╗ ██████╗ ░░░░░░░░░░░░\n"+
+                       "░░░░░░░░░░░░ ██║     ████╗ ████║██╔════╝ ░░░░░░░░░░░░\n"+
+                       "█████╗█████╗ ██║     ██╔████╔██║╚█████╗  █████╗█████╗\n"+
+                       "╚════╝╚════╝ ██║     ██║╚██╔╝██║ ╚═══██╗ ╚════╝╚════╝\n"+
+                       "░░░░░░░░░░░░ ███████╗██║ ╚═╝ ██║██████╔╝ ░░░░░░░░░░░░\n"+
+                       "░░░░░░░░░░░░ ╚══════╝╚═╝     ╚═╝╚═════╝  ░░░░░░░░░░░░\n"+
+                       "░░░░░░░░░░░░ \uD83C\uDD3B\uD83C\uDD38\uD83C\uDD31\uD83C\uDD41\uD83C\uDD30\uD83C\uDD41\uD83C\uDD48 \uD83C\uDD3C\uD83C\uDD30\uD83C\uDD3D\uD83C\uDD30\uD83C\uDD36\uD83C\uDD34\uD83C\uDD3C\uD83C\uDD34\uD83C\uDD3D\uD83C\uDD43 \uD83C\uDD42\uD83C\uDD48\uD83C\uDD42\uD83C\uDD43\uD83C\uDD34\uD83C\uDD3C ░░░░░░░░░░░░░");
+        System.out.println("(➊)==> Manage Users");
+        System.out.println("(➋)==> Manage Books");
+        System.out.println("(➌)==> Loans");
+        System.out.println("(➍)==> Reports");
+        System.out.println("(⓿)==> Exit");
+    }
 
-  public void displayMemberMenu() {
-    // TODO: Implement method 'displayMemberMenu'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayMemberMenu'");
-  }
+    public void displayMemberMenu() {
+        // TODO: Implement method 'displayMemberMenu'.
+        throw new UnsupportedOperationException("Unimplemented method 'displayMemberMenu'");
+    }
 
-  public void displayBookMenu() {
+    public void displayBookMenu() {
     // TODO: Implement method 'displayBookMenu'.
     throw new UnsupportedOperationException("Unimplemented method 'displayBookMenu'");
   }
