@@ -3,44 +3,9 @@ package view;
 import java.util.List;
 import model.*;
 import java.util.Scanner;
+import controller.LibraryController;
 
 public class UserInterface {
-    public void displayMainMenu() {
-        while (true) {
-            printMainMenu();
-            Scanner mainMenuInput = new Scanner(System.in);
-            try {
-                int input = mainMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (input) {
-                case 1:
-                    displayMemberMenu();
-                    break;
-                case 2:
-                    displayBookMenu();
-                    break;
-                case 3:
-                    displayLoanMenu();
-                    break;
-                case 4:
-                    displayReportMenu();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
-        }
-    }
-
     public void printMainMenu() {
     System.out.println("                      ██╗   ██╗ ██████╗██████╗   ██╗     ██╗██████╗                       \n" +
                        "██████╗██████╗██████╗ ██║   ██║██╔════╝██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n" +
@@ -83,37 +48,74 @@ public class UserInterface {
                 "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
     }
 
-    public void displayMemberMenu() {
+    public void displayMainMenu() {
         while (true) {
-            printManageUsersMenu();
-            Scanner ManageUsersInput = new Scanner(System.in);
+            printMainMenu();
+            Scanner MainMenuInput = new Scanner(System.in);
+            int mainmenuinput = 0;
             try {
-                int input = ManageUsersInput.nextInt();
+                mainmenuinput = MainMenuInput.nextInt();
             }
             catch(Exception e) {
                 System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
                 System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
                 System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
             }
-            switch (input) {
+            switch (mainmenuinput) {
                 case 1:
-                    addUndergraduateStudent();
+                    displayMemberMenu();
                     break;
                 case 2:
-                    addGraduateStudent();
+                    displayBookMenu();
                     break;
                 case 3:
-                    searchStudentByID();
+                    displayLoanMenu();
                     break;
                 case 4:
-                    removeStudentByID();
-                    break;
-                case 5:
-                    listAllStudents();
+                    displayReportMenu();
                     break;
                 case 0:
-                    displayMainMenu();
+                    return;
+                default:
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
                     break;
+            }
+        }
+    }
+
+    public void displayMemberMenu() {
+        while (true) {
+            printManageUsersMenu();
+            Scanner MemberMenuInput = new Scanner(System.in);
+            int membermenuinput;
+            try {
+                membermenuinput = MemberMenuInput.nextInt();
+            }
+            catch(Exception e) {
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            }
+            switch (membermenuinput) {
+                case 1:
+                    LibraryController.addGraduateStudent(studentId, firstName, ..... );
+                    break;
+                case 2:
+                    LibraryController.addGraduateStudent();
+                    break;
+                case 3:
+                    LibraryController.searchStudentByID();
+                    break;
+                case 4:
+                    LibraryController.removeStudentByID();
+                    break;
+                case 5:
+                    LibraryController.listAllStudents();
+                    break;
+                case 0:
+                    return;
                 default:
                     System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
                     System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
