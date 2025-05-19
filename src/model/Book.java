@@ -7,6 +7,15 @@ public class Book {
   private int publicationYear;
   private boolean isBorrowed;
 
+
+//Constructor
+  public Book(String title,String author,String isbn,int publicationYear,boolean isBorrowed){
+      this.title=title;
+      this.author=author;
+      this.isbn=isbn;this.publicationYear=publicationYear;
+      this.isBorrowed=isBorrowed;
+  }
+//Setter
   public void borrowBook() {
       this.isBorrowed=true;
   }
@@ -14,12 +23,10 @@ public class Book {
   public void returnBook() {
       this.isBorrowed=false;
   }
-
-  public void getDetails(String title,String author,String isbn,int publicationYear,boolean  isBorrowed) {
-      this.title=title;
-      this.author=author;
-      this.isbn=isbn;
-      this.publicationYear=publicationYear;
-      this.isBorrowed=isBorrowed;
- }
+//Getter
+  public String  getTitle()           {return this.title;}
+  public String  getAuthor()          {return this.author;}
+  public String  getIsbn()            {return this.isbn;}
+  public Integer getPublicationYear() {return this.publicationYear;}
+  public boolean getIsBorrowed()      {return this.isBorrowed;}
 }

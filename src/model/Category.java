@@ -3,14 +3,16 @@ package model;
 public class Category {
   private String name;
   private String description;
-
-  public void getName() {
-    // TODO: Implement method 'getName'.
-    throw new UnsupportedOperationException("Unimplemented method 'getName'");
+//Constructor
+  public Category(String name,String description){
+      this.name=name;
+      this.description=description;
   }
-
-  public void getDescription() {
-    // TODO: Implement method 'getDescription'.
-    throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
+//Getter
+  public String getName() {
+      return this.name;
+  }
+  public String getDescription() {
+      return this.description;
   }
 }
