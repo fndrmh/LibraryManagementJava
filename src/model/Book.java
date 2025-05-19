@@ -7,18 +7,26 @@ public class Book {
   private int publicationYear;
   private boolean isBorrowed;
 
+
+//Constructor
+  public Book(String title,String author,String isbn,int publicationYear,boolean isBorrowed){
+      this.title=title;
+      this.author=author;
+      this.isbn=isbn;this.publicationYear=publicationYear;
+      this.isBorrowed=isBorrowed;
+  }
+//Setter
   public void borrowBook() {
-    // TODO: Implement method 'borrowBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'borrowBook'");
+      this.isBorrowed=true;
   }
 
   public void returnBook() {
-    // TODO: Implement method 'returnBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'returnBook'");
+      this.isBorrowed=false;
   }
-
-  public void getDetails() {
-    // TODO: Implement method 'getDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'getDetails'");
-  }
+//Getter
+  public String  getTitle()           {return this.title;}
+  public String  getAuthor()          {return this.author;}
+  public String  getIsbn()            {return this.isbn;}
+  public Integer getPublicationYear() {return this.publicationYear;}
+  public boolean getIsBorrowed()      {return this.isBorrowed;}
 }
