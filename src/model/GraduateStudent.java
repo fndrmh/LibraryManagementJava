@@ -14,4 +14,11 @@ public GraduateStudent(String studentId,String firstName,String lastName,String 
       this.supervisor=supervisor;
       this.thesisTitle=thesisTitle;
 }
+//Getter
+public String getSupervisor()  {return supervisor;}
+public String getThesisTitle() {return thesisTitle;}
+//Setter
+public void setSupervisor (String supervisor)  {this.supervisor=supervisor;}
+public void setThesisTitle(String thesisTitle) {this.thesisTitle=thesisTitle;}
 }
+
