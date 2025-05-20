@@ -6,8 +6,14 @@ import java.util.Scanner;
 import controller.LibraryController;
 
 public class UserInterface {
+    private LibraryController libraryController;
+
+    public UserInterface() {
+        libraryController = new LibraryController();
+    }
+
     public void printMainMenu() {
-    System.out.println("                      ██╗   ██╗ ██████╗██████╗   ██╗     ██╗██████╗                       \n" +
+        System.out.println("                      ██╗   ██╗ ██████╗██████╗   ██╗     ██╗██████╗                       \n" +
                        "██████╗██████╗██████╗ ██║   ██║██╔════╝██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n" +
                        "╚═════╝╚═════╝╚═════╝ ██║   ██║╚█████╗ ██████╦╝  ██║     ██║██████╦╝ ╚═════╝╚═════╝╚═════╝\n" +
                        "██████╗██████╗██████╗ ██║   ██║ ╚═══██╗██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n" +
@@ -48,13 +54,52 @@ public class UserInterface {
                 "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
     }
 
+    public void printManageBooksMenu(){
+        System.out.println(
+                        "                      ███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗                      \n"+
+                        "██████╗██████╗██████╗ ████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝ ██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝ ██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗   ╚═════╝╚═════╝╚═════╝\n"+
+                        "██████╗██████╗██████╗ ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝   ██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝ ██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗ ╚═════╝╚═════╝╚═════╝\n"+
+                        "                      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      \n"+
+                        "                            ██████╗  █████╗  █████╗ ██╗  ██╗ ██████╗                             \n"+
+                        "██████╗██████╗██████╗██████╗██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝ ██████╗██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝██║  ██║██║  ██║█████═╝ ╚█████╗  ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
+                        "██████╗██████╗██████╗██████╗██╔══██╗██║  ██║██║  ██║██╔═██╗  ╚═══██╗ ██████╗██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗██████╔╝ ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
+                        "                            ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝╚═════╝                              \n"+
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Add Book                 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Remove Book by ISBN      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➌)══> Search Book              ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➍)══> List All Available Books ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +);
+    }
+    public void printSearchBookMenu(){
+        System.out.println(
+                        "                         ██████╗███████╗ █████╗ ██████╗  █████╗ ██╗  ██╗                         \n"+
+                        "██████╗██████╗██████╗   ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║    ██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝   ╚█████╗ █████╗  ███████║██████╔╝██║  ╚═╝███████║    ╚═════╝╚═════╝╚═════╝\n"+
+                        "██████╗██████╗██████╗    ╚═══██╗██╔══╝  ██╔══██║██╔══██╗██║  ██╗██╔══██║    ██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝   ██████╔╝███████╗██║  ██║██║  ██║╚█████╔╝██║  ██║    ╚═════╝╚═════╝╚═════╝\n"+
+                        "                        ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚═╝                         \n"+
+                        "                                ██████╗  █████╗  █████╗ ██╗  ██╗                                 \n"+
+                        "██████╗██████╗██████╗██████╗    ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝     ██████╗██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝██║  ██║██║  ██║█████═╝      ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
+                        "██████╗██████╗██████╗██████╗    ██╔══██╗██║  ██║██║  ██║██╔═██╗      ██████╗██████╗██████╗██████╗\n"+
+                        "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗     ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
+                        "                                ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝                                 \n"+
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Search by Title          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Search by ISBN           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Book Management  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +);
+    }
+
     public void displayMainMenu() {
         while (true) {
-            printMainMenu();
-            Scanner MainMenuInput = new Scanner(System.in);
+            printMainMenu();//Menu print
+            Scanner MainMenuInput = new Scanner(System.in);//Get input
             int mainmenuinput = 0;
             try {
-                mainmenuinput = MainMenuInput.nextInt();
+                mainmenuinput = MainMenuInput.nextInt();q
             }
             catch(Exception e) {
                 System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
@@ -89,7 +134,7 @@ public class UserInterface {
         while (true) {
             printManageUsersMenu();
             Scanner MemberMenuInput = new Scanner(System.in);
-            int membermenuinput;
+            int membermenuinput = 0;
             try {
                 membermenuinput = MemberMenuInput.nextInt();
             }
@@ -100,19 +145,52 @@ public class UserInterface {
             }
             switch (membermenuinput) {
                 case 1:
-                    LibraryController.addGraduateStudent(studentId, firstName, ..... );
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
+                    String ugstudentId = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
+                    String ugfirstName = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
+                    String uglastName = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
+                    String ugmajor = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Enrollment Year║══> ");
+                    try{
+                        int ugenrollmentYear = MemberMenuInput.nextInt();
+                    }
+                    catch (Exception e){
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    }
+                    libraryController.addUndergraduateStudent(ugstudentId, ugfirstName, uglastName, ugmajor, ugenrollmentYear);
                     break;
                 case 2:
-                    LibraryController.addGraduateStudent();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
+                    String gstudentId = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
+                    String gfirstName = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
+                    String glastName = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
+                    String gmajor = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Supervisor║══> ");
+                    String gsupervisor = MemberMenuInput.nextLine();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Thesis Title║══> ");
+                    String gthesisTitle = MemberMenuInput.nextLine();
+                    libraryController.addGraduateStudent(gstudentId, gfirstName, glastName, gmajor, gsupervisor, gthesisTitle);
                     break;
                 case 3:
-                    LibraryController.searchStudentByID();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
+                    String sstudentId = MemberMenuInput.nextLine();
+                    LibraryController.searchStudent(sstudentId);
                     break;
                 case 4:
-                    LibraryController.removeStudentByID();
+                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
+                    String rstudentId = MemberMenuInput.nextLine();
+                    LibraryController.removeStudent(rstudentId);
                     break;
                 case 5:
-                    LibraryController.listAllStudents();
+                    LibraryController.displayAllStudents();
                     break;
                 case 0:
                     return;
@@ -126,8 +204,59 @@ public class UserInterface {
     }
 
     public void displayBookMenu() {
-    // TODO: Implement method 'displayBookMenu'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayBookMenu'");
+        while (true) {
+            printManageBooksMenu();
+            Scanner BooksMenuInput = new Scanner(System.in);
+            int booksmenuinput = 0;
+            try {
+                booksmenuinput = BooksMenuInput.nextInt();
+            }
+            catch(Exception e) {
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            }
+            switch (booksmenuinput) {
+                case 1:
+                    AddBook();
+                    break;
+                case 2:
+                    RemoveBookbyISBN();
+                    break;
+                case 3:
+                    printSearchBookMenu();
+                    int searchbookmenu = 0;
+                    try {
+                        searchbookmenu = BooksMenuInput.nextInt();
+                    }
+                    catch(Exception e) {
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    }
+                    switch (searchbookmenu){
+                        case 1:
+                            SearchbyTitle();
+                            break;
+                        case 2:
+                            SearchbyISBN();
+                            break;
+                        case 0:
+                            return;
+                    }
+                    break;
+                case 4:
+                    ListAllAvailableBooks();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    break;
+            }
+        }
   }
 
   public void displayLoanMenu() {
