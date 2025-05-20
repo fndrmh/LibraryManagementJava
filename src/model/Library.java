@@ -110,7 +110,7 @@ public class Library {
       return false;
   }
 
-  public Book getBorrowedBooksByStudent(String studentId) {
+  public List<Book> getBorrowedBooksByStudent(String studentId) {
       for(Loan loan : loans){
             if(loan.getStudent().studentId.equals(studentId)){
                   return loan.getBook();
