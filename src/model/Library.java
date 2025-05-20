@@ -103,6 +103,7 @@ public class Library {
       for(Loan loan :loans){
             if(loan.getBook().equals(book)){
                   loans.remove(loan);
+                  loan.getBook().returnBook();
                   return true;
             }
       }
