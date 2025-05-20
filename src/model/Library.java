@@ -130,7 +130,7 @@ public class Library {
 
   }
 
-  public Student getStudentsByMajor(String major) {
+  public List<Student> getStudentsByMajor(String major) {
       for(Student student :students){
             if(student.getMajor().equals(major)){
                   return student;
