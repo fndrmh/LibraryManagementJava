@@ -40,7 +40,7 @@ public class Library {
 
   public Book searchBookByISBN(String isbn) {
             for(Book book : books){
-            if(book.getTitle().equals(isbn)){
+            if(book.getIsbn().equals(isbn)){
                   return book;
             }
       }
@@ -111,12 +111,13 @@ public class Library {
   }
 
   public List<Book> getBorrowedBooksByStudent(String studentId) {
+      List<Book> borrowedBooks=new ArrayList<>();
       for(Loan loan : loans){
             if(loan.getStudent().studentId.equals(studentId)){
-                  return loan.getBook();
+                  borrowedBooks.add(loan.getBook());
             }
       }
-      return null;
+      return borrowedBooks;
   }
 
   public void  getBooksByCategory(String categoryName) {
@@ -131,11 +132,12 @@ public class Library {
   }
 
   public List<Student> getStudentsByMajor(String major) {
+      List<Student> studentsByMajor=new ArrayList<>();
       for(Student student :students){
             if(student.getMajor().equals(major)){
-                  return student;
+                  studentsByMajor.add(student);
             }
       }
-      return null;
+      return studentsByMajor;
   }
 }
