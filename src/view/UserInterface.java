@@ -265,10 +265,10 @@ public class UserInterface {
                             libraryController.searchBookByTitle(T);
                             break;
                         case 2:
-                            String I;
+                            String isbn3;
                             System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
-                            I = BooksMenuInput.nextLine();
-                            libraryController.searchBookByISBN(I);
+                            isbn3 = BooksMenuInput.nextLine();
+                            libraryController.searchBookByISBN(isbn3);
                             break;
                         case 0:
                             return;
@@ -303,10 +303,17 @@ public class UserInterface {
           }
           switch (loanmenuinput) {
               case 1:
-                  ();
+                  String isbn4;
+                  System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
+                  isbn4 = loanMenuInput.nextLine();
+                  int SID;
+                  SID = loanMenuInput.nextInt();
+                  libraryController.borrowBook(bookISBN, studentId);
                   break;
               case 2:
-                  ();
+                  String isbn5;
+                  isbn5 = loanMenuInput.nextLine();
+                  libraryController.returnBook(bookISBN);
                   break;
               case 0:
                   return;
