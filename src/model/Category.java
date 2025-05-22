@@ -34,7 +34,6 @@ public class Category implements JSONSerializable {
     return result;
   }
 
-
   public static Category deserialize(JSONDict json) {
     return new Category(json.getString("name"), json.getString("description"));
   }
