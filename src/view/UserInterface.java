@@ -181,8 +181,9 @@ public class UserInterface {
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
                     String ugmajor = MemberMenuInput.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Enrollment Year║══> ");
+                    int ugenrollmentyear = 0;
                     try{
-                        int ugenrollmentyear = MemberMenuInput.nextInt();
+                        ugenrollmentyear = MemberMenuInput.nextInt();
                     }
                     catch (Exception e){
                         System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
@@ -207,17 +208,15 @@ public class UserInterface {
                     libraryController.addGraduateStudent(gstudentId, gfirstName, glastName, gmajor, gsupervisor, gthesisTitle);
                     break;
                 case 3:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String sstudentId = MemberMenuInput.nextLine();
-                    LibraryController.searchStudent(sstudentId);
+                    libraryController.searchStudent(getStudentIdForSearch());
                     break;
                 case 4:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
                     String rstudentId = MemberMenuInput.nextLine();
-                    LibraryController.removeStudent(rstudentId);
+                    libraryController.removeStudent(rstudentId);
                     break;
                 case 5:
-                    LibraryController.displayAllStudents();
+                    libraryController.getAllStudents();
                     break;
                 case 0:
                     return;
@@ -273,10 +272,7 @@ public class UserInterface {
                     }
                     switch (searchbookmenu){
                         case 1:
-                            String T;
-                            System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Title║══> ");
-                            T = BooksMenuInput.nextLine();
-                            libraryController.searchBookByTitle(T);
+                            libraryController.searchBookByTitle(getBookTitleForSearch());
                             break;
                         case 2:
                             String isbn3;
@@ -289,7 +285,7 @@ public class UserInterface {
                     }
                     break;
                 case 4:
-                    libraryController.displayAvailableBooks();
+                    libraryController.getAvailableBooks();
                     break;
                 case 0:
                     return;
@@ -317,16 +313,14 @@ public class UserInterface {
             }
             switch (loanmenuinput) {
                 case 1:
-                    String isbn4;
+                    Book isbn4;
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
-                    isbn4 = loanMenuInput.nextLine();
-                    String SID;
+                    Student SID;
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Student ID║══> ");
-                    SID = loanMenuInput.nextLine();
                     libraryController.borrowBook(isbn4, SID);
                     break;
                 case 2:
-                    String isbn5;
+                    Book isbn5;
                     isbn5 = loanMenuInput.nextLine();
                     libraryController.returnBook(isbn5);
                     break;
@@ -370,35 +364,23 @@ public class UserInterface {
         }
     }
 
-
-    public void getUndergraduateStudentDetails() {
-    // TODO: Implement method 'getUndergraduateStudentDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'getUndergraduateStudentDetails'");
-    }
-
-    public void getGraduateStudentDetails() {
-    // TODO: Implement method 'getGraduateStudentDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'getGraduateStudentDetails'");
-    }
-
-    public void getStudentIdForSearch() {
-    // TODO: Implement method 'getStudentIdForSearch'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudentIdForSearch'");
-    }
-
-    public void getBookDetailsForCreation() {
-    // TODO: Implement method 'getBookDetailsForCreation'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBookDetailsForCreation'");
+    public String getStudentIdForSearch() {
+        Scanner gSIFS = new Scanner(System.in);
+        System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
+        String sstudentId = gSIFS.nextLine();
+        return sstudentId;
     }
 
     public void getBookISBNForOperation() {
-    // TODO: Implement method 'getBookISBNForOperation'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBookISBNForOperation'");
+
     }
 
-    public void getBookTitleForSearch() {
-    // TODO: Implement method 'getBookTitleForSearch'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBookTitleForSearch'");
+    public String getBookTitleForSearch() {
+        Scanner gBTFS = new Scanner(System.in);
+        String T;
+        System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Title║══> ");
+        T = gBTFS.nextLine();
+        return T;
     }
 
     public void getStudentIdForLoan() {
@@ -417,13 +399,21 @@ public class UserInterface {
     }
 
     public void displayBookDetails(Book book) {
-    // TODO: Implement method 'displayBookDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayBookDetails'");
+
+    }
+
+    public void getBookDetailsForCreation() {
+        // TODO: Implement method 'getBookDetailsForCreation'.
+        throw new UnsupportedOperationException("Unimplemented method 'getBookDetailsForCreation'");
+    }
+    
+    public void displayLoanDetails(Loan loan) {
+        // TODO: Implement method 'displayLoanDetails'.
+        throw new UnsupportedOperationException("Unimplemented method 'displayLoanDetails'");
     }
 
     public void displayAllStudents(List<Student> students) {
-    // TODO: Implement method 'displayAllStudents'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayAllStudents'");
+        System.out.println();
     }
 
     public void displayAllBooks(List<Book> books) {
@@ -431,13 +421,7 @@ public class UserInterface {
     throw new UnsupportedOperationException("Unimplemented method 'displayAllBooks'");
     }
 
-    public void displayLoanDetails(Loan loan) {
-    // TODO: Implement method 'displayLoanDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayLoanDetails'");
-    }
-
     public void displayReport(List<?> results) {
-    // TODO: Implement method 'displayReport'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayReport'");
+
     }
 }
