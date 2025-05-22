@@ -53,6 +53,14 @@ public class JSONDict extends JSONObject {
     return jsonNumber.getValue();
   }
 
+  public boolean getBoolean(String key) {
+    JSONObject obj = this.get(key);
+    if (!(obj instanceof JSONBoolean))
+      throw new IllegalArgumentException(String.format("dict[%s] is not a boolean", key));
+
+    return ((JSONBoolean) obj).getValue();
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

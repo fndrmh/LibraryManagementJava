@@ -29,13 +29,22 @@ public class UndergraduateStudent extends Student {
 
   @Override
   public JSONObject serialize() {
-    // TODO: Implemented method 'serialize' for UndergraduateStudent
-    throw new UnsupportedOperationException("Unimplemented method 'serialize' for UndergraduateStudent");
+    JSONDict result = new JSONDict();
+
+    result.put("class", JSONObject.fromString("UndergraduateStudent"));
+
+    result.put("studentId", JSONObject.fromString(studentId));
+    result.put("firstName", JSONObject.fromString(firstName));
+    result.put("lastName", JSONObject.fromString(lastName));
+    result.put("major", JSONObject.fromString(major));
+
+    result.put("enrollmentYear", JSONObject.fromNumber(enrollmentYear));
+    return result;
   }
 
   public static UndergraduateStudent deserialize(JSONDict json) {
-    // TODO: Implemented method 'deserialize' for UndergraduateStudent 
-    throw new UnsupportedOperationException("Unimplemented method 'deserialize' for UndergraduateStudent");
+    return new UndergraduateStudent(json.getString("studentId"), json.getString("firstName"),
+        json.getString("lastName"), json.getString("major"), json.getInteger("enrollmentYear"));
   }
 
 }

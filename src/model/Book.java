@@ -52,12 +52,20 @@ public class Book implements JSONSerializable {
 
   @Override
   public JSONObject serialize() {
-    // TODO: Implement method 'serialize' for Book
-    throw new UnsupportedOperationException("Unimplemented method 'serialize' for Book");
+    JSONDict result = new JSONDict();
+
+    result.put("class", JSONObject.fromString("Book"));
+    result.put("title", JSONObject.fromString(title));
+    result.put("author", JSONObject.fromString(author));
+    result.put("isbn", JSONObject.fromString(isbn));
+    result.put("publicationYear", JSONObject.fromNumber(publicationYear));
+    result.put("isBorrowed", JSONObject.fromBoolean(isBorrowed));
+
+    return result;
   }
 
   public static Book deserialize(JSONDict json) {
-    // TODO: Implemented method 'deserialize' for Book
-    throw new UnsupportedOperationException("Unimplemented method 'deserialize' for Book");
+    return new Book(json.getString("title"), json.getString("author"), json.getString("isbn"),
+        json.getInteger("publicationYear"), json.getBoolean("isBorrowed"));
   }
 }

@@ -1,5 +1,6 @@
 package jsonlib;
 
+import jsonlib.types.JSONBoolean;
 import jsonlib.types.JSONDict;
 import jsonlib.types.JSONList;
 import jsonlib.types.JSONNumber;
@@ -80,7 +81,7 @@ public class JSONParser {
     StringBuilder integerPartStr = new StringBuilder();
     StringBuilder floatingPartStr = new StringBuilder();
     boolean isFloat = false;
-    
+
     while (peek() != '\0' && Character.isDigit(peek()))
       integerPartStr.append(consume());
 
@@ -101,8 +102,13 @@ public class JSONParser {
       double number = Double.valueOf(integerPartStr + "." + floatingPartStr);
       return new JSONNumber<Double>(sign * number);
     } else {
-      int number = Integer.valueOf(integerPartStr.toString());
-      return new JSONNumber<Integer>(sign * number);
+      try {
+        int number = Integer.valueOf(integerPartStr.toString());
+        return new JSONNumber<Integer>(sign * number);
+      } catch (NumberFormatException e) {
+        long number = Long.valueOf(integerPartStr.toString());
+        return new JSONNumber<Long>(sign * number);
+      }
     }
   }
 
@@ -146,6 +152,16 @@ public class JSONParser {
     return dict;
   }
 
+  private JSONBoolean parseBoolean() throws JSONExpectFailedException {
+    if (peek() == 't') {
+      expect("true");
+      return new JSONBoolean(true);
+    } else {
+      expect("false");
+      return new JSONBoolean(false);
+    }
+  }
+
   public JSONObject parse() throws JSONExpectFailedException {
     while (peek() != '\0') {
       switch (peek()) {
@@ -160,11 +176,11 @@ public class JSONParser {
             return parseNumber();
           else if (Character.isWhitespace(peek()))
             consume();
+          else if (peek() == 't' || peek() == 'f')
+            return parseBoolean();
           else
             // TODO: handle invalid characters properly.
             throw new UnsupportedOperationException("not implemented yet");
-
-          // TODO: handle json boolean and null
           break;
       }
     }
@@ -172,4 +188,3 @@ public class JSONParser {
   }
 
 }
-

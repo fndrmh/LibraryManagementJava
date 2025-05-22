@@ -25,13 +25,17 @@ public class Category implements JSONSerializable {
 
   @Override
   public JSONObject serialize() {
-    // TODO: Implemented method 'serialize' for Category
-    throw new UnsupportedOperationException("Unimplemented method 'serialize' for Category");
+    JSONDict result = new JSONDict();
+
+    result.put("class", JSONObject.fromString("Book"));
+    result.put("name", JSONObject.fromString(name));
+    result.put("description", JSONObject.fromString(description));
+
+    return result;
   }
 
 
   public static Category deserialize(JSONDict json) {
-    // TODO: Implemented method 'deserialize' for Category
-    throw new UnsupportedOperationException("Unimplemented method 'deserialize' for Category");
+    return new Category(json.getString("name"), json.getString("description"));
   }
 }

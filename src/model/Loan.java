@@ -3,8 +3,10 @@ package model;
 import java.util.Date;
 
 import jsonlib.JSONSerializable;
+import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
+import jsonlib.types.JSONNumber;
 
 public class Loan implements JSONSerializable {
   private Book book;
@@ -55,13 +57,25 @@ public class Loan implements JSONSerializable {
 
   @Override
   public JSONObject serialize() {
-    // TODO: Implement method 'serialize' for Loan.
-    throw new UnsupportedOperationException("Unimplemented method 'serialize' for Loan");
+    JSONDict result = new JSONDict();
+
+    result.put("class", JSONObject.fromString("Loan"));
+    result.put("book", book.serialize());
+    result.put("student", student.serialize());
+
+    result.put("loanDate", new JSONNumber<Long>(loanDate.getTime()));
+    result.put("dueDate", new JSONNumber<Long>(dueDate.getTime()));
+    return result;
   }
 
   public static Loan deserialize(JSONDict json) {
-    // TODO: Implemented method 'deserialize' for Loan
-    throw new UnsupportedOperationException("Unimplemented method 'deserialize' for Loan");
+    JSONNumber<Long> loanDateValue = (JSONNumber<Long>) json.get("loanDate");
+    JSONNumber<Long> dueDateValue = (JSONNumber<Long>) json.get("dueDate");
+
+    Book book = (Book) JSONSerializableFactory.deserialize((JSONDict) json.get("book"));
+    Student student = (Student) JSONSerializableFactory.deserialize((JSONDict) json.get("student"));
+
+    return new Loan(book, student, new Date(loanDateValue.getValue()), new Date(dueDateValue.getValue()));
   }
 
 }
