@@ -135,14 +135,13 @@ public class Library {
       return this.categories;
   }
   public List<Book> getBooksByCategory(String categoryName) {
-      /*for(Category category : categories){
-            if(category.getName().equals(categoryName)){
-
+      List<Book> booksByCategory=new ArrayList<>();
+      for(Book book : booksByCategory){
+            if(book.getCategory().getName().equals(categoryName)){
+                  booksByCategory.add(book);
             }
-      } */
-         // TODO: Implement method 'getStudentsByMajor'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudentsByMajor'");
-
+      }
+      return booksByCategory;
   }
 
   public List<Student> getStudentsByMajor(String major) {
