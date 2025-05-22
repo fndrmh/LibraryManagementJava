@@ -173,9 +173,3 @@ public class JSONParser {
 
 }
 
-class JSONExpectFailedException extends Exception {
-
-  public JSONExpectFailedException(String msg) {
-    super(msg);
-  }
-}
