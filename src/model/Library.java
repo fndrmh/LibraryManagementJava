@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Library {
@@ -8,73 +11,157 @@ public class Library {
   private List<Category> categories;
   private List<Loan> loans;
 
+  // Constructor
+  public Library() {
+    books = new ArrayList<>();
+    students = new ArrayList<>();
+    categories = new ArrayList<>();
+    loans = new ArrayList<>();
+  }
+
+  public void setBooks(List<Book> books) {
+    this.books = books;
+  }
+
+  public List<Book> getBooks() {
+    return this.books;
+  }
+
   public void addBook(Book book) {
-    // TODO: Implement method 'addBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'addBook'");
+    books.add(book);
   }
 
   public void removeBook(String isbn) {
-    // TODO: Implement method 'removeBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'removeBook'");
+    for (Book book : books) {
+      if (book.getIsbn().equals(isbn)) {
+        books.remove(book);
+      }
+    }
   }
 
-  public void searchBookByTitle(String title) {
-    // TODO: Implement method 'searchBookByTitle'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchBookByTitle'");
+  public Book searchBookByTitle(String title) {
+    for (Book book : books) {
+      if (book.getTitle().equals(title)) {
+        return book;
+      }
+    }
+    return null;
   }
 
-  public void searchBookByISBN(String isbn) {
-    // TODO: Implement method 'searchBookByISBN'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchBookByISBN'");
+  public Book searchBookByISBN(String isbn) {
+    for (Book book : books) {
+      if (book.getIsbn().equals(isbn)) {
+        return book;
+      }
+    }
+    return null;
   }
 
-  public void getAvailableBooks() {
-    // TODO: Implement method 'getAvailableBooks'.
-    throw new UnsupportedOperationException("Unimplemented method 'getAvailableBooks'");
+  public List<Book> getAvailableBooks() {
+    List<Book> AvailableBooks = new ArrayList<>();
+    for (Book book : books) {
+      if (!book.getIsBorrowed()) {
+        AvailableBooks.add(book);
+      }
+    }
+    return AvailableBooks;
+  }
+
+  public void setStudents(List<Student> students) {
+    this.students = students;
+  }
+
+  public List<Student> getAllStudents() {
+    return students;
   }
 
   public void addStudent(Student student) {
-    // TODO: Implement method 'addStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'addStudent'");
+    students.add(student);
   }
 
   public void removeStudent(String studentId) {
-    // TODO: Implement method 'removeStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'removeStudent'");
+    for (Student student : students) {
+      if (student.getStudentId().equals(studentId)) {
+        students.remove(student);
+      }
+    }
   }
 
-  public void searchStudentById(String studentId) {
-    // TODO: Implement method 'searchStudentById'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchStudentById'");
+  public Student searchStudentById(String studentId) {
+    for (Student student : students) {
+      if (student.getStudentId().equals(studentId)) {
+        return student;
+      }
+    }
+    return null;
   }
 
-  public void getAllStudents() {
-    // TODO: Implement method 'getAllStudents'.
-    throw new UnsupportedOperationException("Unimplemented method 'getAllStudents'");
+  public void setLoans(List<Loan> loans) {
+    this.loans = loans;
   }
 
-  public void borrowBook(Book book, Student student) {
-    // TODO: Implement method 'borrowBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'borrowBook'");
+  public List<Loan> getLoans() {
+    return this.loans;
   }
 
-  public void returnBook(Book book) {
-    // TODO: Implement method 'returnBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'returnBook'");
+  public boolean borrowBook(Book book, Student student) {
+    if (book.getIsBorrowed()) {
+      return false;
+    }
+
+    Date loanDate = new Date();
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(loanDate);
+    calendar.add(Calendar.DAY_OF_MONTH, 10);
+    Date dueDate = calendar.getTime();
+    book.borrowBook();
+    Loan loan = new Loan(book, student, loanDate, dueDate);
+    loans.add(loan);
+    return true;
   }
 
-  public void getBorrowedBooksByStudent(String studentId) {
-    // TODO: Implement method 'getBorrowedBooksByStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBorrowedBooksByStudent'");
+  public boolean returnBook(Book book) {
+    for (Loan loan : loans) {
+      if (loan.getBook().equals(book)) {
+        loans.remove(loan);
+        loan.getBook().returnBook();
+        return true;
+      }
+    }
+    return false;
   }
 
-  public void getBooksByCategory(String categoryName) {
+  public List<Book> getBorrowedBooksByStudent(String studentId) {
+    List<Book> borrowedBooks = new ArrayList<>();
+    for (Loan loan : loans) {
+      if (loan.getStudent().studentId.equals(studentId)) {
+        borrowedBooks.add(loan.getBook());
+      }
+    }
+    return borrowedBooks;
+  }
+
+  public void setCategories(List<Category> categorios) {
+    this.categories = categorios;
+  }
+
+  public List<Category> getCategories() {
+    return this.categories;
+  }
+
+  public List<Book> getBooksByCategory(String categoryName) {
     // TODO: Implement method 'getBooksByCategory'.
     throw new UnsupportedOperationException("Unimplemented method 'getBooksByCategory'");
+
   }
 
-  public void getStudentsByMajor(String major) {
-    // TODO: Implement method 'getStudentsByMajor'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudentsByMajor'");
+  public List<Student> getStudentsByMajor(String major) {
+    List<Student> studentsByMajor = new ArrayList<>();
+    for (Student student : students) {
+      if (student.getMajor().equals(major)) {
+        studentsByMajor.add(student);
+      }
+    }
+    return studentsByMajor;
   }
 }
