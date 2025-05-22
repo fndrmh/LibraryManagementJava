@@ -1,91 +1,99 @@
 package controller;
 
+import data.FileDataModel;
+import java.util.List;
+import model.Book;
+import model.GraduateStudent;
+import model.Library;
+import model.Student;
+import model.UndergraduateStudent;
 public class LibraryController {
+      private Library library;
+      private FileDataModel fileDataModel;
+      public LibraryController(){
+            library=new Library();
+            fileDataModel=new FileDataModel();
+      }
 
   public void addUndergraduateStudent(String studentId, String firstName, String lastName, String major,
       int enrollmentYear) {
-    // TODO: Implement method 'addUndergraduateStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'addUndergraduateStudent'");
-  }
+            Student student=new UndergraduateStudent(studentId, firstName, lastName, major, enrollmentYear);
+            library.addStudent(student);
+       }
 
   public void addGraduateStudent(String studentId, String firstName, String lastName, String major, String supervisor,
       String thesisTitle) {
-    // TODO: Implement method 'addGraduateStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'addGraduateStudent'");
+            Student student=new GraduateStudent(studentId, firstName, lastName, major, supervisor,thesisTitle);
+            library.addStudent(student);
   }
 
-  public void searchStudent(String studentId) {
-    // TODO: Implement method 'searchStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchStudent'");
+  public Student searchStudent(String studentId) {
+      return library.searchStudentById(studentId);
   }
 
   public void removeStudent(String studentId) {
-    // TODO: Implement method 'removeStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'removeStudent'");
+      library.removeStudent(studentId);
   }
 
-  public void displayAllStudents() {
-    // TODO: Implement method 'displayAllStudents'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayAllStudents'");
+  public List<Student> getAllStudents() {
+      return library.getAllStudents();
   }
 
   public void addBook(String title, String author, String isbn, int publicationYear) {
-    // TODO: Implement method 'addBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'addBook'");
+      Book book=new Book(title, author, isbn, publicationYear, false);
+      library.addBook(book);
   }
 
   public void removeBook(String isbn) {
-    // TODO: Implement method 'removeBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'removeBook'");
+      library.removeBook(isbn);
   }
 
-  public void searchBookByTitle(String title) {
-    // TODO: Implement method 'searchBookByTitle'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchBookByTitle'");
+  public Book searchBookByTitle(String title) {
+      return library.searchBookByTitle(title);
   }
 
-  public void searchBookByISBN(String isbn) {
-    // TODO: Implement method 'searchBookByISBN'.
-    throw new UnsupportedOperationException("Unimplemented method 'searchBookByISBN'");
+  public Book searchBookByISBN(String isbn) {
+      return library.searchBookByISBN(isbn);
   }
 
-  public void displayAvailableBooks() {
-    // TODO: Implement method 'displayAvailableBooks'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayAvailableBooks'");
+  public List<Book> getAvailableBooks() {
+      return library.getAvailableBooks();
   }
 
-  public void borrowBook(String bookISBN, String studentId) {
-    // TODO: Implement method 'borrowBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'borrowBook'");
+  public void borrowBook(Book book, Student student) {
+      library.borrowBook(book, student);
+
   }
 
-  public void returnBook(String bookISBN) {
-    // TODO: Implement method 'returnBook'.
-    throw new UnsupportedOperationException("Unimplemented method 'returnBook'");
+  public void returnBook(Book book) {
+      library.returnBook(book);
   }
 
-  public void displayBorrowedBooksByStudent(String studentId) {
-    // TODO: Implement method 'displayBorrowedBooksByStudent'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayBorrowedBooksByStudent'");
+  public List<Book> getBorrowedBooksByStudent(String studentId) {
+      return library.getBorrowedBooksByStudent(studentId);
   }
 
-  public void displayBooksByCategory(String categoryName) {
-    // TODO: Implement method 'displayBooksByCategory'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayBooksByCategory'");
+  public List<Book> getBooksByCategory(String categoryName) {
+      return library.getBooksByCategory(categoryName);
   }
 
-  public void displayStudentsByMajor(String major) {
-    // TODO: Implement method 'displayStudentsByMajor'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayStudentsByMajor'");
+  public List<Student> getStudentsByMajor(String major) {
+      return library.getStudentsByMajor(major);
   }
 
   public void saveData() {
-    // TODO: Implement method 'saveData'.
-    throw new UnsupportedOperationException("Unimplemented method 'saveData'");
+      //TODO:fix file Path
+      fileDataModel.saveBooks(library.getBooks(),"");
+      fileDataModel.saveCategories(library.getCategories(), "");
+      fileDataModel.saveLoans(library.getLoans(), "");
+      fileDataModel.saveStudents(library.getAllStudents(), "");
   }
 
-  public void loadData() {
-    // TODO: Implement method 'loadData'.
-    throw new UnsupportedOperationException("Unimplemented method 'loadData'");
+  /* public void loadData() {
+      library.setBooks(fileDataModel.loadBooks(""));
+      library.setCategories(fileDataModel.loadCategories(""));
+      library.setLoans(fileDataModel.loadLoans(""));
+      library.setStudents(fileDataModel.loadStudents(""));
   }
+      */
 }
