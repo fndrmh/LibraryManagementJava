@@ -16,7 +16,12 @@ public class Library {
       categories=new ArrayList<>();
       loans=new ArrayList<>();
   }
-
+  public void setBooks(List<Book> books){
+      this.books=books;
+  }
+  public List<Book> getBooks(){
+      return this.books;
+  }
   public void addBook(Book book) {
       books.add(book);
   }
@@ -57,6 +62,9 @@ public class Library {
       return AvailableBooks;
   }
 
+  public List<Student> getAllStudents() {
+      return students;
+  }
   public void addStudent(Student student) {
       students.add(student);
   }
@@ -77,11 +85,12 @@ public class Library {
       }
       return null;
   }
-
-  public List<Student> getAllStudents() {
-      return students;
+  public void setLoans(List<Loan> loans){
+      this.loans=loans;
   }
-
+  public List<Loan> getLoans(){
+      return this.loans;
+  }
   public boolean borrowBook(Book book, Student student) {
       if(book.getIsBorrowed()){
             return false;
@@ -119,8 +128,13 @@ public class Library {
       }
       return borrowedBooks;
   }
-
-  public void  getBooksByCategory(String categoryName) {
+  public void setCategories(List<Category> categorios){
+      this.categories=categorios;
+  }
+  public List<Category> getCategories(){
+      return this.categories;
+  }
+  public List<Book> getBooksByCategory(String categoryName) {
       /*for(Category category : categories){
             if(category.getName().equals(categoryName)){
 
