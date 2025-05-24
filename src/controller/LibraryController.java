@@ -2,11 +2,7 @@ package controller;
 
 import data.FileDataModel;
 import java.util.List;
-import model.Book;
-import model.GraduateStudent;
-import model.Library;
-import model.Student;
-import model.UndergraduateStudent;
+import model.*;
 public class LibraryController {
       private Library library;
       private FileDataModel fileDataModel;
