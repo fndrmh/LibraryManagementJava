@@ -317,12 +317,12 @@ public class UserInterface {
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
                     Student SID;
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Student ID║══> ");
-                    libraryController.borrowBook(isbn4, SID);
+                    //libraryController.borrowBook(isbn4, SID);
                     break;
                 case 2:
                     Book isbn5;
-                    isbn5 = loanMenuInput.nextLine();
-                    libraryController.returnBook(isbn5);
+                    //isbn5 = loanMenuInput.nextLine();
+                    //libraryController.returnBook(isbn5);
                     break;
                 case 0:
                     return;
