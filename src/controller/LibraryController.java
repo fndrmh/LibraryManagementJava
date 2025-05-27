@@ -2,11 +2,8 @@ package controller;
 
 import data.FileDataModel;
 import java.util.List;
-import model.Book;
-import model.GraduateStudent;
-import model.Library;
-import model.Student;
-import model.UndergraduateStudent;
+
+import model.*;
 
 public class LibraryController {
   private Library library;
@@ -41,9 +38,11 @@ public class LibraryController {
     return library.getAllStudents();
   }
 
-  public void addBook(String title, String author, String isbn, int publicationYear) {
-    Book book = new Book(title, author, isbn, publicationYear, false);
-    library.addBook(book);
+
+  public void addBook(String title, String author, String isbn,Category category, int publicationYear) {
+      Book book=new Book(title, author, isbn,category, publicationYear, false);
+      library.addBook(book);
+
   }
 
   public void removeBook(String isbn) {
@@ -90,11 +89,13 @@ public class LibraryController {
     fileDataModel.saveStudents(library.getAllStudents());
   }
 
+
   public void loadData() {
     library.setBooks(fileDataModel.loadBooks());
     library.setCategories(fileDataModel.loadCategories());
     library.setLoans(fileDataModel.loadLoans());
     library.setStudents(fileDataModel.loadStudents());
+
   }
 
 }
