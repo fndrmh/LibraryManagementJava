@@ -2,32 +2,80 @@ package model;
 
 import java.util.Date;
 
-public class Loan {
+import jsonlib.JSONSerializable;
+import jsonlib.JSONSerializableFactory;
+import jsonlib.types.JSONObject;
+import jsonlib.types.JSONDict;
+import jsonlib.types.JSONNumber;
+
+public class Loan implements JSONSerializable {
   private Book book;
   private Student student;
   private Date loanDate;
   private Date dueDate;
 
-
-
-  public Loan(Book book,Student student,Date loanDate,Date dueDate){
-   this.book=book;
-   this.student=student;
-   this.loanDate=loanDate;
-   this.dueDate=dueDate;
+  public Loan(Book book, Student student, Date loanDate, Date dueDate) {
+    this.book = book;
+    this.student = student;
+    this.loanDate = loanDate;
+    this.dueDate = dueDate;
   }
 
+  // Seterr
+  public void setBook(Book book) {
+    this.book = book;
+  }
 
+  public void setStudent(Student student) {
+    this.student = student;
+  }
 
-//Seterr
-  public void    setBook     (Book book)       {this.book=book;}
-  public void    setStudent  (Student student) {this.student=student;}
-  public void    setLoanDate (Date loanDate)   {this.loanDate=loanDate;}
-  public void    setDueDate  (Date dueDate)    {this.dueDate=dueDate;}
-//getter
-  public Book    getBook()     {return this.book;}
-  public Student getStudent()  {return this.student;}
-  public Date    getLoanDate() {return this.loanDate;}
-  public Date    getDueDate()  {return this.dueDate;}
+  public void setLoanDate(Date loanDate) {
+    this.loanDate = loanDate;
+  }
+
+  public void setDueDate(Date dueDate) {
+    this.dueDate = dueDate;
+  }
+
+  // getter
+  public Book getBook() {
+    return this.book;
+  }
+
+  public Student getStudent() {
+    return this.student;
+  }
+
+  public Date getLoanDate() {
+    return this.loanDate;
+  }
+
+  public Date getDueDate() {
+    return this.dueDate;
+  }
+
+  @Override
+  public JSONObject serialize() {
+    JSONDict result = new JSONDict();
+
+    result.put("class", JSONObject.fromString("Loan"));
+    result.put("book", book.serialize());
+    result.put("student", student.serialize());
+
+    result.put("loanDate", new JSONNumber<Long>(loanDate.getTime()));
+    result.put("dueDate", new JSONNumber<Long>(dueDate.getTime()));
+    return result;
+  }
+
+  public static Loan deserialize(JSONDict json) {
+    JSONNumber<Long> loanDateValue = (JSONNumber<Long>) json.get("loanDate");
+    JSONNumber<Long> dueDateValue = (JSONNumber<Long>) json.get("dueDate");
+
+    Book book = (Book) JSONSerializableFactory.deserialize((JSONDict) json.get("book"));
+    Student student = (Student) JSONSerializableFactory.deserialize((JSONDict) json.get("student"));
+
+    return new Loan(book, student, new Date(loanDateValue.getValue()), new Date(dueDateValue.getValue()));
+  }
 
 }

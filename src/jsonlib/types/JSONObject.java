@@ -22,6 +22,10 @@ public abstract class JSONObject {
     return new JSONDict(data);
   }
 
+  public static JSONObject fromBoolean(boolean data) {
+    return new JSONBoolean(data);
+  }
+
   @Override
   public abstract String toString();
 }
