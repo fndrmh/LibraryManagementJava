@@ -150,8 +150,13 @@ public class Library {
   }
 
   public List<Book> getBooksByCategory(String categoryName) {
-    // TODO: Implement method 'getBooksByCategory'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBooksByCategory'");
+      List<Book> booksByCategory=new ArrayList<>();
+      for(Book book : booksByCategory){
+            if(book.getCategory().getName().equals(categoryName)){
+                  booksByCategory.add(book);
+            }
+      }
+      return booksByCategory;
 
   }
 
