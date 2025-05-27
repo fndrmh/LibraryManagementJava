@@ -1,6 +1,7 @@
 package model;
 
 import jsonlib.JSONSerializable;
+import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
 
@@ -44,6 +45,10 @@ public class Book implements JSONSerializable {
 
   public String getIsbn() {
     return this.isbn;
+  }
+
+  public Category getCategory() {
+    return this.category;
   }
 
   public Integer getPublicationYear() {
