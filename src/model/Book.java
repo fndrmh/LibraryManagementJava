@@ -62,6 +62,7 @@ public class Book implements JSONSerializable {
     result.put("title", JSONObject.fromString(title));
     result.put("author", JSONObject.fromString(author));
     result.put("isbn", JSONObject.fromString(isbn));
+    result.put("category", category.serialize());
     result.put("publicationYear", JSONObject.fromNumber(publicationYear));
     result.put("isBorrowed", JSONObject.fromBoolean(isBorrowed));
 
@@ -69,8 +70,9 @@ public class Book implements JSONSerializable {
   }
 
   public static Book deserialize(JSONDict json) {
+    Category category = (Category) JSONSerializableFactory.deserialize((JSONDict) json.get("category"));
     return new Book(json.getString("title"), json.getString("author"), json.getString("isbn"),
-        json.getInteger("publicationYear"), json.getBoolean("isBorrowed"));
+        category, json.getInteger("publicationYear"), json.getBoolean("isBorrowed"));
   }
 
 }
