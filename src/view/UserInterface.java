@@ -252,7 +252,8 @@ public class UserInterface {
                     String isbn1 = BooksMenuInput.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Publication Year║══> ");
                     int publicationYear = BooksMenuInput.nextInt();
-                    libraryController.addBook(title, author, isbn1, publicationYear);
+                    // TODO: print list of available categories and let the user choose one or define one
+                    libraryController.addBook(title, author, isbn1, null, publicationYear);
                     break;
                 case 2:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ISBN║══> ");
