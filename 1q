@@ -125,8 +125,8 @@ public class UserInterface {
     public void displayMainMenu() {
         while (true) {
             printMainMenu();
-            int choice = readIntInRange("Enter a number", 0, 4);
-            switch (choice) {
+            int mainmenuinput = readIntInRange("Enter a number", 0, 4);
+            switch (mainmenuinput) {
                 case 1:
                     displayMemberMenu();
                     break;
@@ -342,16 +342,18 @@ public class UserInterface {
     }
 
     private void clearScannerBuffer() {
-      if (scanner.hasNextLine())
-        scanner.nextLine();
+      while (scanner.hasNext()) {
+        System.out.println(scanner.next());
+        System.out.println("here");
+      }
     }
 
     private int readIntInRange(String prompt, int min, int max) {
       while (true) {
+        clearScannerBuffer();
         printPrompt(prompt);
         try {
           int input = scanner.nextInt();
-          clearScannerBuffer();
           if (input >= min && input <= max)
             return input;
           else {
@@ -360,13 +362,13 @@ public class UserInterface {
           }
         } catch (Exception e) {
           printInvalidInput();
-          clearScannerBuffer();
           continue;
         }
       }
     }
 
     private String readString(String prompt) {
+      clearScannerBuffer();
       printPrompt(prompt);
       // TODO: validiate input
       return scanner.nextLine();
