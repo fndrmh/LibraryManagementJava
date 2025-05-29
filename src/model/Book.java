@@ -29,7 +29,6 @@ public class Book implements JSONSerializable {
   }
 
   public void returnBook() {
-
     this.isBorrowed = false;
   }
 
@@ -61,7 +60,7 @@ public class Book implements JSONSerializable {
   @Override
   public String toString() {
     return String.format("%s\n\tAuthor: %s\n\tCategory: %s\n\tISBN: %s\n\tPublication Year: %d\n\tAvailable: %s\n",
-        title, author, category, isbn, publicationYear, isBorrowed ? "Yes" : "No");
+        title, author, category, isbn, publicationYear, isBorrowed ? "No" : "Yes");
   }
 
   @Override

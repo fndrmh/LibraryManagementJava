@@ -232,13 +232,23 @@ public class UserInterface {
       printSearchBookMenu();
       int choice = readIntInRange("Enter a number", 0, 2);
       switch (choice){
-        case 1:
-          libraryController.searchBookByTitle(getBookTitleForSearch());
+        case 1: {
+          Book book = libraryController.searchBookByTitle(getBookTitleForSearch());
+          if (book == null)
+            System.out.println("Book not found!");
+          else
+            System.out.println(book);
           break;
-        case 2:
+        }
+        case 2: {
           String isbn = readString("Enter the book ISBN");
-          libraryController.searchBookByISBN(isbn);
+          Book book = libraryController.searchBookByISBN(isbn);
+          if (book == null)
+            System.out.println("Book not found!");
+          else
+            System.out.println(book);
           break;
+        }
         case 0:
           return;
       }
