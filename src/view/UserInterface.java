@@ -171,9 +171,14 @@ public class UserInterface {
                     libraryController.addGraduateStudent(studentID, firstName, lastName, major, supervisor, thesisTitle);
                     break;
                 }
-                case 3:
-                    libraryController.searchStudent(getStudentIdForSearch());
+                case 3: {
+                    Student student = libraryController.searchStudent(getStudentIdForSearch());
+                    if (student == null)
+                      System.out.println("Student not found!");
+                    else
+                      System.out.println(student);
                     break;
+                }
                 case 4: {
                     String studentID = readString("Enter the Student ID");
                     libraryController.removeStudent(studentID);
