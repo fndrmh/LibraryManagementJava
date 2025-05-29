@@ -180,7 +180,7 @@ public class UserInterface {
                     break;
                 }
                 case 5:
-                    libraryController.getAllStudents();
+                    displayAllStudents(libraryController.getAllStudents());
                     break;
                 case 0:
                     return;
@@ -318,7 +318,9 @@ public class UserInterface {
     }
 
     public void displayAllStudents(List<Student> students) {
-        System.out.println();
+      for (Student student : students) {
+        System.out.println(student);
+      }
     }
 
     public void displayAllBooks(List<Book> books) {

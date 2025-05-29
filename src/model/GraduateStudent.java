@@ -39,6 +39,12 @@ public class GraduateStudent extends Student {
   }
 
   @Override
+  public String toString() {
+    return String.format("%s %s\n\tID: %s\n\tMajor: %s\n\tSupervisor: %s\n\tThesis Title: %s\n", firstName, lastName,
+        studentId, major, supervisor, thesisTitle);
+  }
+
+  @Override
   public JSONObject serialize() {
     JSONDict result = new JSONDict();
 

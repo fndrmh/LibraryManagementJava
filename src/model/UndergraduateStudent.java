@@ -28,6 +28,12 @@ public class UndergraduateStudent extends Student {
   }
 
   @Override
+  public String toString() {
+    return String.format("%s %s\n\tID: %s\n\tMajor: %s\n\tEnrollment Year: %d\n", firstName, lastName, studentId, major,
+        enrollmentYear);
+  }
+
+  @Override
   public JSONObject serialize() {
     JSONDict result = new JSONDict();
 
