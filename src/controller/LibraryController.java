@@ -1,6 +1,8 @@
 package controller;
 
 import data.FileDataModel;
+import jsonlib.JSONSerializableFactory;
+
 import java.util.List;
 
 import model.*;
@@ -12,6 +14,13 @@ public class LibraryController {
   public LibraryController() {
     library = new Library();
     fileDataModel = new FileDataModel();
+    JSONSerializableFactory.registerType("UndergraduateStudent", UndergraduateStudent.class);
+    JSONSerializableFactory.registerType("GraduateStudent", GraduateStudent.class);
+    JSONSerializableFactory.registerType("Book", Book.class);
+    JSONSerializableFactory.registerType("Category", Category.class);
+    JSONSerializableFactory.registerType("Loan", Loan.class);
+
+    loadData();
   }
 
   public void addUndergraduateStudent(String studentId, String firstName, String lastName, String major,
@@ -93,7 +102,6 @@ public class LibraryController {
     library.setCategories(fileDataModel.loadCategories());
     library.setLoans(fileDataModel.loadLoans());
     library.setStudents(fileDataModel.loadStudents());
-
   }
 
 }

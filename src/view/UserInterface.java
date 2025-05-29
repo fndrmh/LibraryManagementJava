@@ -140,6 +140,7 @@ public class UserInterface {
                     displayReportMenu();
                     break;
                 case 0:
+                    libraryController.saveData();
                     return;
                 default:
                     assert false: "UNREACHABLE";
@@ -172,7 +173,7 @@ public class UserInterface {
                     break;
                 }
                 case 3: {
-                    Student student = libraryController.searchStudent(getStudentIdForSearch());
+                    Student student = libraryController.searchStudent(readString("Enter Student ID"));
                     if (student == null)
                       System.out.println("Student not found!");
                     else
@@ -233,7 +234,7 @@ public class UserInterface {
       int choice = readIntInRange("Enter a number", 0, 2);
       switch (choice){
         case 1: {
-          Book book = libraryController.searchBookByTitle(getBookTitleForSearch());
+          Book book = libraryController.searchBookByTitle(readString("Enter Book Title"));
           if (book == null)
             System.out.println("Book not found!");
           else
@@ -289,47 +290,6 @@ public class UserInterface {
                     assert false: "UNREACHABLE";
             }
         }
-    }
-
-    public String getStudentIdForSearch() {
-        return readString("Enter Student ID");
-    }
-
-    public void getBookISBNForOperation() {
-
-    }
-
-    public String getBookTitleForSearch() {
-      return readString("Enter Book Title");
-    }
-
-    public void getStudentIdForLoan() {
-    // TODO: Implement method 'getStudentIdForLoan'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudentIdForLoan'");
-    }
-
-    public void getBookISBNForLoan() {
-    // TODO: Implement method 'getBookISBNForLoan'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBookISBNForLoan'");
-    }
-
-    public void displayStudentDetails(Student student) {
-    // TODO: Implement method 'displayStudentDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayStudentDetails'");
-    }
-
-    public void displayBookDetails(Book book) {
-
-    }
-
-    public void getBookDetailsForCreation() {
-        // TODO: Implement method 'getBookDetailsForCreation'.
-        throw new UnsupportedOperationException("Unimplemented method 'getBookDetailsForCreation'");
-    }
-    
-    public void displayLoanDetails(Loan loan) {
-        // TODO: Implement method 'displayLoanDetails'.
-        throw new UnsupportedOperationException("Unimplemented method 'displayLoanDetails'");
     }
 
     public void displayAllStudents(List<Student> students) {
