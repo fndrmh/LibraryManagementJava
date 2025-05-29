@@ -38,10 +38,9 @@ public class LibraryController {
     return library.getAllStudents();
   }
 
-
-  public void addBook(String title, String author, String isbn,Category category, int publicationYear) {
-      Book book=new Book(title, author, isbn,category, publicationYear, false);
-      library.addBook(book);
+  public void addBook(String title, String author, String isbn, Category category, int publicationYear) {
+    Book book = new Book(title, author, isbn, category, publicationYear, true);
+    library.addBook(book);
 
   }
 
@@ -88,7 +87,6 @@ public class LibraryController {
     fileDataModel.saveLoans(library.getLoans());
     fileDataModel.saveStudents(library.getAllStudents());
   }
-
 
   public void loadData() {
     library.setBooks(fileDataModel.loadBooks());

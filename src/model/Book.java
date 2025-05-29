@@ -13,15 +13,14 @@ public class Book implements JSONSerializable {
   private int publicationYear;
   private boolean isBorrowed;
 
-
-
-//Constructor
-  public Book(String title,String author,String isbn,Category category,int publicationYear,boolean isBorrowed){
-      this.title=title;
-      this.author=author;
-      this.category=category;
-      this.isbn=isbn;this.publicationYear=publicationYear;
-      this.isBorrowed=isBorrowed;
+  // Constructor
+  public Book(String title, String author, String isbn, Category category, int publicationYear, boolean isBorrowed) {
+    this.title = title;
+    this.author = author;
+    this.category = category;
+    this.isbn = isbn;
+    this.publicationYear = publicationYear;
+    this.isBorrowed = isBorrowed;
   }
 
   // Setter
@@ -57,6 +56,12 @@ public class Book implements JSONSerializable {
 
   public boolean getIsBorrowed() {
     return this.isBorrowed;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s\n\tAuthor: %s\n\tCategory: %s\n\tISBN: %s\n\tPublication Year: %d\n\tAvailable: %s\n",
+        title, author, category, isbn, publicationYear, isBorrowed ? "Yes" : "No");
   }
 
   @Override

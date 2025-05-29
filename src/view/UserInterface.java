@@ -218,7 +218,7 @@ public class UserInterface {
                     displaySearchBookMenu();
                     break;
                 case 4:
-                    libraryController.getAvailableBooks();
+                    displayAllBooks(libraryController.getAvailableBooks());
                     break;
                 case 0:
                     return;
@@ -329,8 +329,9 @@ public class UserInterface {
     }
 
     public void displayAllBooks(List<Book> books) {
-    // TODO: Implement method 'displayAllBooks'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayAllBooks'");
+      for (Book book : books) {
+        System.out.println(book);
+      }
     }
 
     public void displayReport(List<?> results) {
