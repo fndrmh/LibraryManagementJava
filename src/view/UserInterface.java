@@ -123,16 +123,7 @@ public class UserInterface {
     public void displayMainMenu() {
         while (true) {
             printMainMenu();//Menu print
-            Scanner MainMenuInput = new Scanner(System.in);//Get input
-            int mainmenuinput = 0;
-            try {
-                mainmenuinput = MainMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
+            int mainmenuinput = readIntInRange("Enter a number", 0, 4);
             switch (mainmenuinput) {
                 case 1:
                     displayMemberMenu();
@@ -161,15 +152,7 @@ public class UserInterface {
         while (true) {
             printManageUsersMenu();
             Scanner MemberMenuInput = new Scanner(System.in);
-            int membermenuinput = 0;
-            try {
-                membermenuinput = MemberMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
+            int membermenuinput = readIntInRange("Enter a number", 0, 5);
             switch (membermenuinput) {
                 case 1:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
@@ -233,15 +216,7 @@ public class UserInterface {
         while (true) {
             printManageBooksMenu();
             Scanner BooksMenuInput = new Scanner(System.in);
-            int booksmenuinput = 0;
-            try {
-                booksmenuinput = BooksMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
+            int booksmenuinput = readIntInRange("Enter a number", 0, 4);
             switch (booksmenuinput) {
                 case 1:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Title║══> ");
@@ -303,15 +278,7 @@ public class UserInterface {
         while (true) {
             printLoanMenu();
             Scanner loanMenuInput = new Scanner(System.in);
-            int loanmenuinput = 0;
-            try {
-                loanmenuinput = loanMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
+            int loanmenuinput = readIntInRange("Enter a number", 0, 2);
             switch (loanmenuinput) {
                 case 1:
                     Book isbn4;
@@ -339,16 +306,7 @@ public class UserInterface {
     public void displayReportMenu() {
         while (true) {
             printReportsMenu();
-            Scanner reportsMenuInput = new Scanner(System.in);
-            int reportsmenuinput = 0;
-            try {
-                reportsmenuinput = reportsMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
+            int reportsmenuinput = readIntInRange("Enter a number", 0, 2);
             switch (reportsmenuinput) {
                 case 1:
                     break;
@@ -424,5 +382,32 @@ public class UserInterface {
 
     public void displayReport(List<?> results) {
 
+    }
+
+    private void printInvalidInput() {
+      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid characters⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    }
+
+    private int readIntInRange(String prompt, int min, int max) {
+      while (true) {
+        System.out.print(String.format("░░░░░░░░░░░░░░░░░░░░░░░░░░║%s║══> ", prompt));
+        System.out.flush();
+
+        Scanner sc = new Scanner(System.in);
+        try {
+          int input = sc.nextInt();
+          if (input >= min && input <= max)
+            return input;
+          else {
+            printInvalidInput();
+            continue;
+          }
+        } catch (Exception e) {
+          printInvalidInput();
+          continue;
+        }
+      }
     }
 }
