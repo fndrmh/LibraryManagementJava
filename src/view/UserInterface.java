@@ -7,9 +7,11 @@ import controller.LibraryController;
 
 public class UserInterface {
     private LibraryController libraryController;
+    private Scanner scanner;
 
     public UserInterface() {
         libraryController = new LibraryController();
+        scanner = new Scanner(System.in);
     }
 
     public void printMainMenu() {
@@ -151,22 +153,21 @@ public class UserInterface {
     public void displayMemberMenu() {
         while (true) {
             printManageUsersMenu();
-            Scanner MemberMenuInput = new Scanner(System.in);
             int membermenuinput = readIntInRange("Enter a number", 0, 5);
             switch (membermenuinput) {
                 case 1:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String ugstudentId = MemberMenuInput.nextLine();
+                    String ugstudentId = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
-                    String ugfirstName = MemberMenuInput.nextLine();
+                    String ugfirstName = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
-                    String uglastName = MemberMenuInput.nextLine();
+                    String uglastName = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
-                    String ugmajor = MemberMenuInput.nextLine();
+                    String ugmajor = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Enrollment Year║══> ");
                     int ugenrollmentyear = 0;
                     try{
-                        ugenrollmentyear = MemberMenuInput.nextInt();
+                        ugenrollmentyear = scanner.nextInt();
                     }
                     catch (Exception e){
                         System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
@@ -177,17 +178,17 @@ public class UserInterface {
                     break;
                 case 2:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String gstudentId = MemberMenuInput.nextLine();
+                    String gstudentId = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
-                    String gfirstName = MemberMenuInput.nextLine();
+                    String gfirstName = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
-                    String glastName = MemberMenuInput.nextLine();
+                    String glastName = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
-                    String gmajor = MemberMenuInput.nextLine();
+                    String gmajor = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Supervisor║══> ");
-                    String gsupervisor = MemberMenuInput.nextLine();
+                    String gsupervisor = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Thesis Title║══> ");
-                    String gthesisTitle = MemberMenuInput.nextLine();
+                    String gthesisTitle = scanner.nextLine();
                     libraryController.addGraduateStudent(gstudentId, gfirstName, glastName, gmajor, gsupervisor, gthesisTitle);
                     break;
                 case 3:
@@ -195,7 +196,7 @@ public class UserInterface {
                     break;
                 case 4:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String rstudentId = MemberMenuInput.nextLine();
+                    String rstudentId = scanner.nextLine();
                     libraryController.removeStudent(rstudentId);
                     break;
                 case 5:
@@ -215,31 +216,30 @@ public class UserInterface {
     public void displayBookMenu() {
         while (true) {
             printManageBooksMenu();
-            Scanner BooksMenuInput = new Scanner(System.in);
             int booksmenuinput = readIntInRange("Enter a number", 0, 4);
             switch (booksmenuinput) {
                 case 1:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Title║══> ");
-                    String title = BooksMenuInput.nextLine();
+                    String title = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Author║══> ");
-                    String author = BooksMenuInput.nextLine();
+                    String author = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ISBN║══> ");
-                    String isbn1 = BooksMenuInput.nextLine();
+                    String isbn1 = scanner.nextLine();
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Publication Year║══> ");
-                    int publicationYear = BooksMenuInput.nextInt();
+                    int publicationYear = scanner.nextInt();
                     // TODO: print list of available categories and let the user choose one or define one
                     libraryController.addBook(title, author, isbn1, null, publicationYear);
                     break;
                 case 2:
                     System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ISBN║══> ");
-                    String isbn2 = BooksMenuInput.nextLine();
+                    String isbn2 = scanner.nextLine();
                     libraryController.removeBook(isbn2);
                     break;
                 case 3:
                     printSearchBookMenu();
                     int searchbookmenu = 0;
                     try {
-                        searchbookmenu = BooksMenuInput.nextInt();
+                        searchbookmenu = scanner.nextInt();
                     }
                     catch(Exception e) {
                         System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
@@ -253,7 +253,7 @@ public class UserInterface {
                         case 2:
                             String isbn3;
                             System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
-                            isbn3 = BooksMenuInput.nextLine();
+                            isbn3 = scanner.nextLine();
                             libraryController.searchBookByISBN(isbn3);
                             break;
                         case 0:
@@ -277,7 +277,6 @@ public class UserInterface {
     public void displayLoanMenu() {
         while (true) {
             printLoanMenu();
-            Scanner loanMenuInput = new Scanner(System.in);
             int loanmenuinput = readIntInRange("Enter a number", 0, 2);
             switch (loanmenuinput) {
                 case 1:
@@ -324,9 +323,8 @@ public class UserInterface {
     }
 
     public String getStudentIdForSearch() {
-        Scanner gSIFS = new Scanner(System.in);
         System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-        String sstudentId = gSIFS.nextLine();
+        String sstudentId = scanner.nextLine();
         return sstudentId;
     }
 
@@ -335,10 +333,9 @@ public class UserInterface {
     }
 
     public String getBookTitleForSearch() {
-        Scanner gBTFS = new Scanner(System.in);
         String T;
         System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Title║══> ");
-        T = gBTFS.nextLine();
+        T = scanner.nextLine();
         return T;
     }
 
@@ -395,9 +392,8 @@ public class UserInterface {
         System.out.print(String.format("░░░░░░░░░░░░░░░░░░░░░░░░░░║%s║══> ", prompt));
         System.out.flush();
 
-        Scanner sc = new Scanner(System.in);
         try {
-          int input = sc.nextInt();
+          int input = scanner.nextInt();
           if (input >= min && input <= max)
             return input;
           else {
