@@ -50,7 +50,11 @@ public class LibraryController {
   public void addBook(String title, String author, String isbn, Category category, int publicationYear) {
     Book book = new Book(title, author, isbn, category, publicationYear, false);
     library.addBook(book);
+  }
 
+  public void addCategory(String name, String description) {
+    Category category = new Category(name, description);
+    library.addCategory(category);
   }
 
   public void removeBook(String isbn) {

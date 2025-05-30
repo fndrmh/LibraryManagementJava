@@ -212,7 +212,8 @@ public class UserInterface {
           String author = readString("Enter the author");
           String isbn = readString("Enter the ISBN");
           int publicationYear = readIntInRange("Enter the publication year", 1000, 3000);
-          Category category = readSelection("Select a category", libraryController.getCategories());
+          List<Category> categories = libraryController.getCategories();
+          Category category = readCategorySelection(categories);
           libraryController.addBook(title, author, isbn, category, publicationYear);
           break;
         }
@@ -417,6 +418,35 @@ public class UserInterface {
     printPrompt(prompt);
     // TODO: validiate input
     return scanner.nextLine();
+  }
+
+  private Category createNewCategory() {
+    String name = readString("Enter Category Name");
+    String description = readString("Enter Category Description");
+    libraryController.addCategory(name, description);
+    System.out.println("New category created successfully!");
+    return readCategorySelection(libraryController.getCategories());
+
+  }
+
+  private Category readCategorySelection(List<Category> categories) {
+    if (categories == null || categories.size() == 0) {
+      System.out.println("No categories available");
+      System.out.println("Creating a new category...");
+
+      return createNewCategory();
+    }
+
+    for (int i = 0; i < categories.size(); i++)
+      System.out.println(String.format("%d. %s", i, categories.get(i).getDisplayName()));
+
+    System.out.println(String.format("%d. %s", categories.size(), "Add new category"));
+
+    int choice = readIntInRange("Choose an option", 0, categories.size());
+    if (choice == categories.size())
+      return createNewCategory();
+    else
+      return categories.get(choice);
   }
 
   private <T extends BaseModel> T readSelection(String prompt, List<T> options) {

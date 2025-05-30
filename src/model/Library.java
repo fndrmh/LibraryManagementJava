@@ -31,6 +31,10 @@ public class Library {
     books.add(book);
   }
 
+  public void addCategory(Category category) {
+    categories.add(category);
+  }
+
   public void removeBook(String isbn) {
     for (Book book : books) {
       if (book.getIsbn().equals(isbn)) {
@@ -150,13 +154,13 @@ public class Library {
   }
 
   public List<Book> getBooksByCategory(Category category) {
-      List<Book> booksByCategory=new ArrayList<>();
-      for(Book book : booksByCategory){
-            if(book.getCategory().getName().equals(category.getName())){
-                  booksByCategory.add(book);
-            }
+    List<Book> booksByCategory = new ArrayList<>();
+    for (Book book : booksByCategory) {
+      if (book.getCategory().getName().equals(category.getName())) {
+        booksByCategory.add(book);
       }
-      return booksByCategory;
+    }
+    return booksByCategory;
 
   }
 
