@@ -82,8 +82,8 @@ public class LibraryController {
     return library.getBorrowedBooksByStudent(studentId);
   }
 
-  public List<Book> getBooksByCategory(String categoryName) {
-    return library.getBooksByCategory(categoryName);
+  public List<Book> getBooksByCategory(Category category) {
+    return library.getBooksByCategory(category);
   }
 
   public List<Student> getStudentsByMajor(String major) {

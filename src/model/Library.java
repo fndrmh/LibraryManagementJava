@@ -149,10 +149,10 @@ public class Library {
     return this.categories;
   }
 
-  public List<Book> getBooksByCategory(String categoryName) {
+  public List<Book> getBooksByCategory(Category category) {
       List<Book> booksByCategory=new ArrayList<>();
       for(Book book : booksByCategory){
-            if(book.getCategory().getName().equals(categoryName)){
+            if(book.getCategory().getName().equals(category.getName())){
                   booksByCategory.add(book);
             }
       }

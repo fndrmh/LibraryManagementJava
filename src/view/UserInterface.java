@@ -117,9 +117,10 @@ public class UserInterface {
                         "                    ██╔══██╗██╔══╝  ██╔═══╝ ██║  ██║██╔══██╗   ██║    ╚═══██╗                    \n"+
                         "██████╗██████╗      ██║  ██║███████╗██║     ╚█████╔╝██║  ██║   ██║   ██████╔╝      ██████╗██████╗\n"+
                         "╚═════╝╚═════╝      ╚═╝  ╚═╝╚══════╝╚═╝      ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝       ╚═════╝╚═════╝\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Check Out Books          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Return Books             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Loan Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n");
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> List Books by Category           ░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> List Books Borrowed by a Student ░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> List Students by Major           ░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
+                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu                ░░░░░░░░░░░░░░░░░░░░░░░░░░\n");
     }
 
     public void displayMainMenu() {
@@ -279,7 +280,7 @@ public class UserInterface {
                     break;
                 }
                 case 2: {
-                    String studentID = readString("Enter you Student ID");
+                    String studentID = readString("Enter your Student ID");
                     if (libraryController.searchStudent(studentID) == null) {
                       System.out.println("Student not found!");
                       continue;
@@ -304,12 +305,48 @@ public class UserInterface {
     public void displayReportMenu() {
         while (true) {
             printReportsMenu();
-            int choice = readIntInRange("Enter a number", 0, 2);
+            int choice = readIntInRange("Enter a number", 0, 3);
             switch (choice) {
-                case 1:
+                case 1: {
+                    List<Category> categories = libraryController.getCategories();
+                    if (categories == null || categories.size() == 0) {
+                      System.out.println("No categories available rightt now!");
+                      continue;
+                    }
+                    Category category = readSelection("Choose a category", categories);
+                    List<Book> books = libraryController.getBooksByCategory(category);
+                    if (books == null || books.size() == 0) {
+                      System.out.println("No books available in this category");
+                      continue;
+                    }
+                    displayReport(books);
                     break;
-                case 2:
+                }
+                case 2: {
+                    String studentID = readString("Enter your Student ID");
+                    if (libraryController.searchStudent(studentID) == null) {
+                      System.out.println("Student not found!");
+                      continue;
+                    }
+                    List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
+                    if (books == null || books.size() == 0) {
+                      System.out.println("You haven't borrowed any book!");
+                      continue;
+                    }
+                    displayReport(books);
                     break;
+                }
+                case 3: {
+                    String major = readString("Enter a major");
+                    List<Student> students = libraryController.getStudentsByMajor(major);
+                    if (students == null || students.size() == 0) {
+                      System.out.println("No students found in this major");
+                      continue;
+                    }
+
+                    displayReport(students);
+                    break;
+                }
                 case 0:
                     return;
                 default:
@@ -330,8 +367,9 @@ public class UserInterface {
       }
     }
 
-    public void displayReport(List<?> results) {
-
+    public <T extends BaseModel> void displayReport(List<T> results) {
+      for (int i = 0; i < results.size(); i++)
+        System.out.printf("%d. %s\n", i, results.get(i).getDisplayName());
     }
 
     private void printPrompt(String prompt) {
