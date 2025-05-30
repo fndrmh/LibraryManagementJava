@@ -1,8 +1,8 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
-import jsonlib.JSONSerializable;
 import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
@@ -81,5 +81,24 @@ public class Loan extends BaseModel {
     Student student = (Student) JSONSerializableFactory.deserialize((JSONDict) json.get("student"));
 
     return new Loan(book, student, new Date(loanDateValue.getValue()), new Date(dueDateValue.getValue()));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(book, student, loanDate, dueDate);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (!(obj instanceof Loan))
+      return false;
+
+    Loan other = (Loan) obj;
+    return this.student.equals(other.student) && this.book.equals(other.book) && this.loanDate.equals(other.loanDate)
+        && this.dueDate.equals(other.dueDate);
   }
 }

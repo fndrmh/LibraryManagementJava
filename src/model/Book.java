@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import jsonlib.JSONSerializable;
 import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
@@ -89,4 +91,23 @@ public class Book extends BaseModel {
         category, json.getInteger("publicationYear"), json.getBoolean("isBorrowed"));
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, author, isbn, category, publicationYear, isBorrowed);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (!(obj instanceof Book))
+      return false;
+
+    Book other = (Book) obj;
+    return this.title.equals(other.title) && this.author.equals(other.author) && this.isbn.equals(other.isbn)
+        && this.category.equals(other.category) && this.publicationYear == other.publicationYear
+        && this.isBorrowed == other.isBorrowed;
+  }
 }

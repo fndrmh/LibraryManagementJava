@@ -1,6 +1,9 @@
 package model;
 
 import jsonlib.types.JSONObject;
+
+import java.util.Objects;
+
 import jsonlib.types.JSONDict;
 
 public class UndergraduateStudent extends Student {
@@ -53,4 +56,24 @@ public class UndergraduateStudent extends Student {
         json.getString("lastName"), json.getString("major"), json.getInteger("enrollmentYear"));
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(studentId, firstName, lastName, major, enrollmentYear);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (!(obj instanceof UndergraduateStudent))
+      return false;
+
+    UndergraduateStudent other = (UndergraduateStudent) obj;
+
+    return this.studentId.equals(other.studentId) && this.firstName.equals(other.firstName)
+        && this.lastName.equals(other.lastName) && this.major.equals(other.major)
+        && this.enrollmentYear == other.enrollmentYear;
+  }
 }

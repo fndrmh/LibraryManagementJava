@@ -1,6 +1,9 @@
 package model;
 
 import jsonlib.types.JSONObject;
+
+import java.util.Objects;
+
 import jsonlib.types.JSONDict;
 
 public class Category extends BaseModel {
@@ -45,5 +48,24 @@ public class Category extends BaseModel {
 
   public static Category deserialize(JSONDict json) {
     return new Category(json.getString("name"), json.getString("description"));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, description);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (!(obj instanceof Category))
+      return false;
+
+    Category other = (Category) obj;
+
+    return this.name.equals(other.name) && this.description.equals(other.description);
   }
 }
