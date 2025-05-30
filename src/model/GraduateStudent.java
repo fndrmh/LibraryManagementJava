@@ -1,6 +1,9 @@
 package model;
 
 import jsonlib.types.JSONObject;
+
+import java.util.Objects;
+
 import jsonlib.types.JSONDict;
 
 public class GraduateStudent extends Student {
@@ -39,6 +42,12 @@ public class GraduateStudent extends Student {
   }
 
   @Override
+  public String toString() {
+    return String.format("%s %s\n\tID: %s\n\tMajor: %s\n\tSupervisor: %s\n\tThesis Title: %s\n", firstName, lastName,
+        studentId, major, supervisor, thesisTitle);
+  }
+
+  @Override
   public JSONObject serialize() {
     JSONDict result = new JSONDict();
 
@@ -58,5 +67,26 @@ public class GraduateStudent extends Student {
   public static GraduateStudent deserialize(JSONDict json) {
     return new GraduateStudent(json.getString("studentId"), json.getString("firstName"), json.getString("lastName"),
         json.getString("major"), json.getString("supervisor"), json.getString("thesisTitle"));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(studentId, firstName, lastName, major, supervisor, thesisTitle);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (!(obj instanceof GraduateStudent))
+      return false;
+
+    GraduateStudent other = (GraduateStudent) obj;
+
+    return this.studentId.equals(other.studentId) && this.firstName.equals(other.firstName)
+        && this.lastName.equals(other.lastName) && this.major.equals(other.major)
+        && this.supervisor.equals(other.supervisor) && this.thesisTitle.equals(other.thesisTitle);
   }
 }

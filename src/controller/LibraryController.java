@@ -1,6 +1,8 @@
 package controller;
 
 import data.FileDataModel;
+import jsonlib.JSONSerializableFactory;
+
 import java.util.List;
 
 import model.*;
@@ -12,6 +14,13 @@ public class LibraryController {
   public LibraryController() {
     library = new Library();
     fileDataModel = new FileDataModel();
+    JSONSerializableFactory.registerType("UndergraduateStudent", UndergraduateStudent.class);
+    JSONSerializableFactory.registerType("GraduateStudent", GraduateStudent.class);
+    JSONSerializableFactory.registerType("Book", Book.class);
+    JSONSerializableFactory.registerType("Category", Category.class);
+    JSONSerializableFactory.registerType("Loan", Loan.class);
+
+    loadData();
   }
 
   public void addUndergraduateStudent(String studentId, String firstName, String lastName, String major,
@@ -38,11 +47,14 @@ public class LibraryController {
     return library.getAllStudents();
   }
 
+  public void addBook(String title, String author, String isbn, Category category, int publicationYear) {
+    Book book = new Book(title, author, isbn, category, publicationYear, false);
+    library.addBook(book);
+  }
 
-  public void addBook(String title, String author, String isbn,Category category, int publicationYear) {
-      Book book=new Book(title, author, isbn,category, publicationYear, false);
-      library.addBook(book);
-
+  public void addCategory(String name, String description) {
+    Category category = new Category(name, description);
+    library.addCategory(category);
   }
 
   public void removeBook(String isbn) {
@@ -74,12 +86,16 @@ public class LibraryController {
     return library.getBorrowedBooksByStudent(studentId);
   }
 
-  public List<Book> getBooksByCategory(String categoryName) {
-    return library.getBooksByCategory(categoryName);
+  public List<Book> getBooksByCategory(Category category) {
+    return library.getBooksByCategory(category);
   }
 
   public List<Student> getStudentsByMajor(String major) {
     return library.getStudentsByMajor(major);
+  }
+
+  public List<Category> getCategories() {
+    return library.getCategories();
   }
 
   public void saveData() {
@@ -89,13 +105,11 @@ public class LibraryController {
     fileDataModel.saveStudents(library.getAllStudents());
   }
 
-
   public void loadData() {
     library.setBooks(fileDataModel.loadBooks());
     library.setCategories(fileDataModel.loadCategories());
     library.setLoans(fileDataModel.loadLoans());
     library.setStudents(fileDataModel.loadStudents());
-
   }
 
 }

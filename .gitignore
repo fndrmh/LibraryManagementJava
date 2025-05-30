@@ -13,3 +13,8 @@ out/
 
 .vscode/
 .code-workspace
+
+students.json
+books.json
+categories.json
+loans.json

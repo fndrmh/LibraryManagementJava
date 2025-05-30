@@ -66,7 +66,7 @@ public class FileDataModel {
     try {
       content = String.join("\n", Files.readAllLines(Paths.get(filePath)));
     } catch (IOException e) {
-      e.printStackTrace();
+      return null;
     }
 
     return content;
@@ -74,6 +74,10 @@ public class FileDataModel {
 
   public <T> List<T> loadFromFile(String filePath) {
     String content = readFromFile(filePath);
+    if (content == null) {
+      return new ArrayList<>();
+    }
+
     JSONParser parser = new JSONParser(content);
 
     JSONObject jsonObj = null;

@@ -6,423 +6,458 @@ import java.util.Scanner;
 import controller.LibraryController;
 
 public class UserInterface {
-    private LibraryController libraryController;
+  private LibraryController libraryController;
+  private Scanner scanner;
 
-    public UserInterface() {
-        libraryController = new LibraryController();
+  public UserInterface() {
+    libraryController = new LibraryController();
+    scanner = new Scanner(System.in);
+  }
+
+  public void printMainMenu() {
+    System.out.println(
+            "                      ██╗   ██╗ ██████╗██████╗   ██╗     ██╗██████╗                       \n" +
+            "██████╗██████╗██████╗ ██║   ██║██╔════╝██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ██║   ██║╚█████╗ ██████╦╝  ██║     ██║██████╦╝ ╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗ ██║   ██║ ╚═══██╗██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ║██████╔╝██████╔╝██████╦╝  ███████╗██║██████╦╝ ╚═════╝╚═════╝╚═════╝\n" +
+            "                      ╚══════╝╚══════╝ ╚═════╝   ╚══════╝╚═╝╚═════╝                       \n" +
+            "███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗███╗   ███╗███████╗███╗  ██╗████████╗\n" +
+            "████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝████╗ ████║██╔════╝████╗ ██║╚══██╔══╝\n" +
+            "██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗  ██╔████╔██║█████╗  ██╔██╗██║   ██║   \n" +
+            "██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝  ██║╚██╔╝██║██╔══╝  ██║╚████║   ██║   \n" +
+            "██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗██║ ╚═╝ ██║███████╗██║ ╚███║   ██║   \n" +
+            "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚══╝   ╚═╝   \n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> Manage Users░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> Manage Books░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(3)══> Loans       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(4)══> Reports     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Exit        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void printManageUsersMenu() {
+    System.out.println(
+            "                      ███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗                      \n" +
+            "██████╗██████╗██████╗ ████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝ ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗   ╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗ ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝   ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗ ╚═════╝╚═════╝╚═════╝\n" +
+            "                      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      \n" +
+            "                            ██╗   ██╗ ██████╗███████╗██████╗  ██████╗                            \n" +
+            "██████╗██████╗██████╗██████╗██║   ██║██╔════╝██╔════╝██╔══██╗██╔════╝██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝██║   ██║╚█████╗ █████╗  ██████╔╝╚█████╗ ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗██████╗██║   ██║ ╚═══██╗██╔══╝  ██╔══██╗ ╚═══██╗██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝╚██████╔╝██████╔╝███████╗██║  ██║██████╔╝╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "                             ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝                             \n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> Add Undergraduate Student ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> Add Graduate Student      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(3)══> Search Student by ID      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(4)══> Remove Student by ID      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(5)══> List All Students         ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Back to Main Menu         ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void printManageBooksMenu() {
+    System.out.println(
+            "                      ███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗                      \n" +
+            "██████╗██████╗██████╗ ████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝ ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗   ╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗ ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝   ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝ ██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗ ╚═════╝╚═════╝╚═════╝\n" +
+            "                      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      \n" +
+            "                            ██████╗  █████╗  █████╗ ██╗  ██╗ ██████╗                             \n" +
+            "██████╗██████╗██████╗██████╗██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝ ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝██║  ██║██║  ██║█████═╝ ╚█████╗  ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗██████╗██╔══██╗██║  ██║██║  ██║██╔═██╗  ╚═══██╗ ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗██████╔╝ ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "                            ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝╚═════╝                              \n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> Add Book                 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> Remove Book by ISBN      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(3)══> Search Book              ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(4)══> List All Available Books ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void printSearchBookMenu() {
+    System.out.println(
+            "                         ██████╗███████╗ █████╗ ██████╗  █████╗ ██╗  ██╗                         \n" +
+            "██████╗██████╗██████╗   ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║    ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝   ╚█████╗ █████╗  ███████║██████╔╝██║  ╚═╝███████║    ╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗    ╚═══██╗██╔══╝  ██╔══██║██╔══██╗██║  ██╗██╔══██║    ██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝   ██████╔╝███████╗██║  ██║██║  ██║╚█████╔╝██║  ██║    ╚═════╝╚═════╝╚═════╝\n" +
+            "                        ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚═╝                         \n" +
+            "                                ██████╗  █████╗  █████╗ ██╗  ██╗                                 \n" +
+            "██████╗██████╗██████╗██████╗    ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝     ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝██║  ██║██║  ██║█████═╝      ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "██████╗██████╗██████╗██████╗    ██╔══██╗██║  ██║██║  ██║██╔═██╗      ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗     ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "                                ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝                                 \n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> Search by Title          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> Search by ISBN           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Back to Book Management  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void printLoanMenu() {
+    System.out.println(
+            "██████╗██████╗██████╗██████╗    ██║     ██╗  ██╗██╗  ██╗████╗ ██╗    ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝    ██║     ██║  ██║███████║██╔██╗██║    ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "                                ██║     ██║  ██║██╔══██║██║╚████║                                \n" +
+            "██████╗██████╗██████╗██████╗    ███████╗╚█████╔╝██║  ██║██║ ╚███║    ██████╗██████╗██████╗██████╗\n" +
+            "╚═════╝╚═════╝╚═════╝╚═════╝    ╚══════╝ ╚════╝ ╚═╝  ╚═╝╚═╝  ╚══╝    ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> Check Out Books          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> Return Books             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Back to Loan Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void printReportsMenu() {
+    System.out.println(
+            "                    ██████╗ ███████╗██████╗  █████╗ ██████╗ ████████╗ ██████╗                    \n" +
+            "██████╗██████╗      ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝      ██████╗██████╗\n" +
+            "╚═════╝╚═════╝      ██████╔╝█████╗  ██████╔╝██║  ██║██████╔╝   ██║   ╚█████╗       ╚═════╝╚═════╝\n" +
+            "                    ██╔══██╗██╔══╝  ██╔═══╝ ██║  ██║██╔══██╗   ██║    ╚═══██╗                    \n" +
+            "██████╗██████╗      ██║  ██║███████╗██║     ╚█████╔╝██║  ██║   ██║   ██████╔╝      ██████╗██████╗\n" +
+            "╚═════╝╚═════╝      ╚═╝  ╚═╝╚══════╝╚═╝      ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝       ╚═════╝╚═════╝\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(1)══> List Books by Category           ░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(2)══> List Books Borrowed by a Student ░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(3)══> List Students by Major           ░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(0)══> Back to Main Menu                ░░░░░░░░░░░░░░░░░░░░░░░░░░\n" +
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  public void displayMainMenu() {
+    while (true) {
+      printMainMenu();
+      int choice = readIntInRange("Enter a number", 0, 4);
+      switch (choice) {
+        case 1:
+          displayMemberMenu();
+          break;
+        case 2:
+          displayBookMenu();
+          break;
+        case 3:
+          displayLoanMenu();
+          break;
+        case 4:
+          displayReportMenu();
+          break;
+        case 0:
+          libraryController.saveData();
+          return;
+        default:
+          assert false : "UNREACHABLE";
+      }
     }
+  }
 
-    public void printMainMenu() {
-        System.out.println(
-                       "                      ██╗   ██╗ ██████╗██████╗   ██╗     ██╗██████╗                       \n"+
-                       "██████╗██████╗██████╗ ██║   ██║██╔════╝██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n"+
-                       "╚═════╝╚═════╝╚═════╝ ██║   ██║╚█████╗ ██████╦╝  ██║     ██║██████╦╝ ╚═════╝╚═════╝╚═════╝\n"+
-                       "██████╗██████╗██████╗ ██║   ██║ ╚═══██╗██╔══██╗  ██║     ██║██╔══██╗ ██████╗██████╗██████╗\n"+
-                       "╚═════╝╚═════╝╚═════╝ ║██████╔╝██████╔╝██████╦╝  ███████╗██║██████╦╝ ╚═════╝╚═════╝╚═════╝\n"+
-                       "                      ╚══════╝╚══════╝ ╚═════╝   ╚══════╝╚═╝╚═════╝                       \n"+
-                       "███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗███╗   ███╗███████╗███╗  ██╗████████╗\n"+
-                       "████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝████╗ ████║██╔════╝████╗ ██║╚══██╔══╝\n"+
-                       "██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗  ██╔████╔██║█████╗  ██╔██╗██║   ██║   \n"+
-                       "██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝  ██║╚██╔╝██║██╔══╝  ██║╚████║   ██║   \n"+
-                       "██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗██║ ╚═╝ ██║███████╗██║ ╚███║   ██║   \n"+
-                       "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚══╝   ╚═╝   \n"+
-                       "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Manage Users░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                       "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Manage Books░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                       "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➌)══> Loans       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                       "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➍)══> Reports     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                       "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Exit        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    }
-
-    public void printManageUsersMenu(){
-        System.out.println(
-                "                      ███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗                      \n"+
-                "██████╗██████╗██████╗ ████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝ ██████╗██████╗██████╗\n"+
-                "╚═════╝╚═════╝╚═════╝ ██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗   ╚═════╝╚═════╝╚═════╝\n"+
-                "██████╗██████╗██████╗ ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝   ██████╗██████╗██████╗\n"+
-                "╚═════╝╚═════╝╚═════╝ ██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗ ╚═════╝╚═════╝╚═════╝\n"+
-                "                      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      \n"+
-                "                            ██╗   ██╗ ██████╗███████╗██████╗  ██████╗                            \n"+
-                "██████╗██████╗██████╗██████╗██║   ██║██╔════╝██╔════╝██╔══██╗██╔════╝██████╗██████╗██████╗██████╗\n"+
-                "╚═════╝╚═════╝╚═════╝╚═════╝██║   ██║╚█████╗ █████╗  ██████╔╝╚█████╗ ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                "██████╗██████╗██████╗██████╗██║   ██║ ╚═══██╗██╔══╝  ██╔══██╗ ╚═══██╗██████╗██████╗██████╗██████╗\n"+
-                "╚═════╝╚═════╝╚═════╝╚═════╝╚██████╔╝██████╔╝███████╗██║  ██║██████╔╝╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                "                             ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝                             \n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Add Undergraduate Student░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Add Graduate Student     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➌)══> Search Student by ID     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➍)══> Remove Student by ID     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➎)══> List All Students        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    }
-
-    public void printManageBooksMenu() {
-        System.out.println(
-                        "                      ███╗   ███╗ █████╗ ███╗  ██╗ █████╗  ██████╗ ███████╗                      \n"+
-                        "██████╗██████╗██████╗ ████╗ ████║██╔══██╗████╗ ██║██╔══██╗██╔════╝ ██╔════╝ ██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝ ██╔████╔██║███████║██╔██╗██║███████║██║  ██╗ █████╗   ╚═════╝╚═════╝╚═════╝\n"+
-                        "██████╗██████╗██████╗ ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║  ╚██╗██╔══╝   ██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝ ██║ ╚═╝ ██║██║  ██║██║ ╚███║██║  ██║╚██████╔╝███████╗ ╚═════╝╚═════╝╚═════╝\n"+
-                        "                      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      \n"+
-                        "                            ██████╗  █████╗  █████╗ ██╗  ██╗ ██████╗                             \n"+
-                        "██████╗██████╗██████╗██████╗██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝ ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝██║  ██║██║  ██║█████═╝ ╚█████╗  ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "██████╗██████╗██████╗██████╗██╔══██╗██║  ██║██║  ██║██╔═██╗  ╚═══██╗ ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗██████╔╝ ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "                            ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝╚═════╝                              \n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Add Book                 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Remove Book by ISBN      ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➌)══> Search Book              ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➍)══> List All Available Books ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Main Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n");
-    }
-
-    public void printSearchBookMenu(){
-        System.out.println(
-                        "                         ██████╗███████╗ █████╗ ██████╗  █████╗ ██╗  ██╗                         \n"+
-                        "██████╗██████╗██████╗   ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║    ██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝   ╚█████╗ █████╗  ███████║██████╔╝██║  ╚═╝███████║    ╚═════╝╚═════╝╚═════╝\n"+
-                        "██████╗██████╗██████╗    ╚═══██╗██╔══╝  ██╔══██║██╔══██╗██║  ██╗██╔══██║    ██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝   ██████╔╝███████╗██║  ██║██║  ██║╚█████╔╝██║  ██║    ╚═════╝╚═════╝╚═════╝\n"+
-                        "                        ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚═╝                         \n"+
-                        "                                ██████╗  █████╗  █████╗ ██╗  ██╗                                 \n"+
-                        "██████╗██████╗██████╗██████╗    ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝     ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝██║  ██║██║  ██║█████═╝      ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "██████╗██████╗██████╗██████╗    ██╔══██╗██║  ██║██║  ██║██╔═██╗      ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝    ██████╦╝╚█████╔╝╚█████╔╝██║ ╚██╗     ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "                                ╚═════╝  ╚════╝  ╚════╝ ╚═╝  ╚═╝                                 \n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Search by Title          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Search by ISBN           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Book Management  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n" );
-    }
-
-    public void printLoanMenu(){
-        System.out.println(
-                        "██████╗██████╗██████╗██████╗    ██║     ██╗  ██╗██╗  ██╗████╗ ██╗    ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝    ██║     ██║  ██║███████║██╔██╗██║    ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "                                ██║     ██║  ██║██╔══██║██║╚████║                                \n"+
-                        "██████╗██████╗██████╗██████╗    ███████╗╚█████╔╝██║  ██║██║ ╚███║    ██████╗██████╗██████╗██████╗\n"+
-                        "╚═════╝╚═════╝╚═════╝╚═════╝    ╚══════╝ ╚════╝ ╚═╝  ╚═╝╚═╝  ╚══╝    ╚═════╝╚═════╝╚═════╝╚═════╝\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Check Out Books          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Return Books             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Loan Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n");
-    }
-
-    public void printReportsMenu(){
-        System.out.println(
-                        "                    ██████╗ ███████╗██████╗  █████╗ ██████╗ ████████╗ ██████╗                    \n"+
-                        "██████╗██████╗      ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝      ██████╗██████╗\n"+
-                        "╚═════╝╚═════╝      ██████╔╝█████╗  ██████╔╝██║  ██║██████╔╝   ██║   ╚█████╗       ╚═════╝╚═════╝\n"+
-                        "                    ██╔══██╗██╔══╝  ██╔═══╝ ██║  ██║██╔══██╗   ██║    ╚═══██╗                    \n"+
-                        "██████╗██████╗      ██║  ██║███████╗██║     ╚█████╔╝██║  ██║   ██║   ██████╔╝      ██████╗██████╗\n"+
-                        "╚═════╝╚═════╝      ╚═╝  ╚═╝╚══════╝╚═╝      ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝       ╚═════╝╚═════╝\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➊)══> Check Out Books          ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(➋)══> Return Books             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"+
-                        "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░(⓿)══> Back to Loan Menu        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n");
-    }
-
-    public void displayMainMenu() {
-        while (true) {
-            printMainMenu();//Menu print
-            Scanner MainMenuInput = new Scanner(System.in);//Get input
-            int mainmenuinput = 0;
-            try {
-                mainmenuinput = MainMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (mainmenuinput) {
-                case 1:
-                    displayMemberMenu();
-                    break;
-                case 2:
-                    displayBookMenu();
-                    break;
-                case 3:
-                    displayLoanMenu();
-                    break;
-                case 4:
-                    displayReportMenu();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
+  public void displayMemberMenu() {
+    while (true) {
+      printManageUsersMenu();
+      int choice = readIntInRange("Enter a number", 0, 5);
+      switch (choice) {
+        case 1: {
+          String studentID = readString("Enter the Student ID");
+          String firstName = readString("Enter the Student First Name");
+          String lastName = readString("Enter the Student Last Name");
+          String major = readString("Enter the Student Major");
+          int enrollmentYear = readIntInRange("Enter the Student Enrollment Year", 1000, 3000);
+          libraryController.addUndergraduateStudent(studentID, firstName, lastName, major, enrollmentYear);
+          break;
         }
-    }
-
-    public void displayMemberMenu() {
-        while (true) {
-            printManageUsersMenu();
-            Scanner MemberMenuInput = new Scanner(System.in);
-            int membermenuinput = 0;
-            try {
-                membermenuinput = MemberMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (membermenuinput) {
-                case 1:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String ugstudentId = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
-                    String ugfirstName = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
-                    String uglastName = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
-                    String ugmajor = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Enrollment Year║══> ");
-                    int ugenrollmentyear = 0;
-                    try{
-                        ugenrollmentyear = MemberMenuInput.nextInt();
-                    }
-                    catch (Exception e){
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    }
-                    libraryController.addUndergraduateStudent(ugstudentId, ugfirstName, uglastName, ugmajor, ugenrollmentyear);
-                    break;
-                case 2:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String gstudentId = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student First Name║══> ");
-                    String gfirstName = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student LastName║══> ");
-                    String glastName = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Major║══> ");
-                    String gmajor = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Supervisor║══> ");
-                    String gsupervisor = MemberMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Thesis Title║══> ");
-                    String gthesisTitle = MemberMenuInput.nextLine();
-                    libraryController.addGraduateStudent(gstudentId, gfirstName, glastName, gmajor, gsupervisor, gthesisTitle);
-                    break;
-                case 3:
-                    libraryController.searchStudent(getStudentIdForSearch());
-                    break;
-                case 4:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-                    String rstudentId = MemberMenuInput.nextLine();
-                    libraryController.removeStudent(rstudentId);
-                    break;
-                case 5:
-                    libraryController.getAllStudents();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
+        case 2: {
+          String studentID = readString("Enter the Student ID");
+          String firstName = readString("Enter the Student First Name");
+          String lastName = readString("Enter the Student Last Name");
+          String major = readString("Enter the Student Major");
+          String supervisor = readString("Enter the Student Supervisor");
+          String thesisTitle = readString("Enter the Student Thesis Title");
+          libraryController.addGraduateStudent(studentID, firstName, lastName, major, supervisor, thesisTitle);
+          break;
         }
-    }
-
-    public void displayBookMenu() {
-        while (true) {
-            printManageBooksMenu();
-            Scanner BooksMenuInput = new Scanner(System.in);
-            int booksmenuinput = 0;
-            try {
-                booksmenuinput = BooksMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (booksmenuinput) {
-                case 1:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Title║══> ");
-                    String title = BooksMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Author║══> ");
-                    String author = BooksMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ISBN║══> ");
-                    String isbn1 = BooksMenuInput.nextLine();
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student Publication Year║══> ");
-                    int publicationYear = BooksMenuInput.nextInt();
-                    // TODO: print list of available categories and let the user choose one or define one
-                    libraryController.addBook(title, author, isbn1, null, publicationYear);
-                    break;
-                case 2:
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ISBN║══> ");
-                    String isbn2 = BooksMenuInput.nextLine();
-                    libraryController.removeBook(isbn2);
-                    break;
-                case 3:
-                    printSearchBookMenu();
-                    int searchbookmenu = 0;
-                    try {
-                        searchbookmenu = BooksMenuInput.nextInt();
-                    }
-                    catch(Exception e) {
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                        System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    }
-                    switch (searchbookmenu){
-                        case 1:
-                            libraryController.searchBookByTitle(getBookTitleForSearch());
-                            break;
-                        case 2:
-                            String isbn3;
-                            System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
-                            isbn3 = BooksMenuInput.nextLine();
-                            libraryController.searchBookByISBN(isbn3);
-                            break;
-                        case 0:
-                            return;
-                    }
-                    break;
-                case 4:
-                    libraryController.getAvailableBooks();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
+        case 3: {
+          Student student = libraryController.searchStudent(readString("Enter Student ID"));
+          if (student == null)
+            System.out.println("Student not found!");
+          else
+            System.out.println(student);
+          break;
         }
-    }
-
-    public void displayLoanMenu() {
-        while (true) {
-            printLoanMenu();
-            Scanner loanMenuInput = new Scanner(System.in);
-            int loanmenuinput = 0;
-            try {
-                loanmenuinput = loanMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (loanmenuinput) {
-                case 1:
-                    Book isbn4;
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book ISBN║══> ");
-                    Student SID;
-                    System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Student ID║══> ");
-                    //libraryController.borrowBook(isbn4, SID);
-                    break;
-                case 2:
-                    Book isbn5;
-                    //isbn5 = loanMenuInput.nextLine();
-                    //libraryController.returnBook(isbn5);
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
+        case 4: {
+          String studentID = readString("Enter the Student ID");
+          libraryController.removeStudent(studentID);
+          break;
         }
+        case 5:
+          displayAllStudents(libraryController.getAllStudents());
+          break;
+        case 0:
+          return;
+        default:
+          assert false : "UNREACHABLE";
+      }
     }
+  }
 
-    public void displayReportMenu() {
-        while (true) {
-            printReportsMenu();
-            Scanner reportsMenuInput = new Scanner(System.in);
-            int reportsmenuinput = 0;
-            try {
-                reportsmenuinput = reportsMenuInput.nextInt();
-            }
-            catch(Exception e) {
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid character⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            }
-            switch (reportsmenuinput) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please select the correct option⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-                    break;
-            }
+  public void displayBookMenu() {
+    while (true) {
+      printManageBooksMenu();
+      int choice = readIntInRange("Enter a number", 0, 4);
+      switch (choice) {
+        case 1: {
+          String title = readString("Enter the title");
+          String author = readString("Enter the author");
+          String isbn = readString("Enter the ISBN");
+          int publicationYear = readIntInRange("Enter the publication year", 1000, 3000);
+          List<Category> categories = libraryController.getCategories();
+          Category category = readCategorySelection(categories);
+          libraryController.addBook(title, author, isbn, category, publicationYear);
+          break;
         }
+        case 2: {
+          String isbn = readString("Enter the ISBN");
+          libraryController.removeBook(isbn);
+          break;
+        }
+        case 3:
+          displaySearchBookMenu();
+          break;
+        case 4:
+          displayAllBooks(libraryController.getAvailableBooks());
+          break;
+        case 0:
+          return;
+        default:
+          assert false : "UNREACHABLE";
+      }
+    }
+  }
+
+  public void displaySearchBookMenu() {
+    printSearchBookMenu();
+    int choice = readIntInRange("Enter a number", 0, 2);
+    switch (choice) {
+      case 1: {
+        Book book = libraryController.searchBookByTitle(readString("Enter Book Title"));
+        if (book == null)
+          System.out.println("Book not found!");
+        else
+          System.out.println(book);
+        break;
+      }
+      case 2: {
+        String isbn = readString("Enter the book ISBN");
+        Book book = libraryController.searchBookByISBN(isbn);
+        if (book == null)
+          System.out.println("Book not found!");
+        else
+          System.out.println(book);
+        break;
+      }
+      case 0:
+        return;
     }
 
-    public String getStudentIdForSearch() {
-        Scanner gSIFS = new Scanner(System.in);
-        System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Student ID║══> ");
-        String sstudentId = gSIFS.nextLine();
-        return sstudentId;
+  }
+
+  public void displayLoanMenu() {
+    while (true) {
+      printLoanMenu();
+      int choice = readIntInRange("Enter a number", 0, 2);
+      switch (choice) {
+        case 1: {
+          String studentID = readString("Enter you Student ID");
+          Student student = libraryController.searchStudent(studentID);
+          if (student == null) {
+            System.out.println("Student not found!");
+            continue;
+          }
+          List<Book> availableBooks = libraryController.getAvailableBooks();
+          if (availableBooks == null || availableBooks.size() == 0) {
+            System.out.println("No books available right now!");
+            continue;
+          }
+
+          Book selectedBook = readSelection("Which book do you want to borrow?", availableBooks);
+          libraryController.borrowBook(selectedBook, student);
+          break;
+        }
+        case 2: {
+          String studentID = readString("Enter your Student ID");
+          if (libraryController.searchStudent(studentID) == null) {
+            System.out.println("Student not found!");
+            continue;
+          }
+          List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
+          if (books == null || books.size() == 0) {
+            System.out.println("You haven't borrowed any book!");
+            continue;
+          }
+          Book selectedBook = readSelection("Which book do you want to return?", books);
+          libraryController.returnBook(selectedBook);
+          break;
+        }
+        case 0:
+          return;
+        default:
+          assert false : "UNREACHABLE";
+      }
+    }
+  }
+
+  public void displayReportMenu() {
+    while (true) {
+      printReportsMenu();
+      int choice = readIntInRange("Enter a number", 0, 3);
+      switch (choice) {
+        case 1: {
+          List<Category> categories = libraryController.getCategories();
+          if (categories == null || categories.size() == 0) {
+            System.out.println("No categories available rightt now!");
+            continue;
+          }
+          Category category = readSelection("Choose a category", categories);
+          List<Book> books = libraryController.getBooksByCategory(category);
+          if (books == null || books.size() == 0) {
+            System.out.println("No books available in this category");
+            continue;
+          }
+          displayReport(books);
+          break;
+        }
+        case 2: {
+          String studentID = readString("Enter your Student ID");
+          if (libraryController.searchStudent(studentID) == null) {
+            System.out.println("Student not found!");
+            continue;
+          }
+          List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
+          if (books == null || books.size() == 0) {
+            System.out.println("You haven't borrowed any book!");
+            continue;
+          }
+          displayReport(books);
+          break;
+        }
+        case 3: {
+          String major = readString("Enter a major");
+          List<Student> students = libraryController.getStudentsByMajor(major);
+          if (students == null || students.size() == 0) {
+            System.out.println("No students found in this major");
+            continue;
+          }
+
+          displayReport(students);
+          break;
+        }
+        case 0:
+          return;
+        default:
+          assert false : "UNREACHABLE";
+      }
+    }
+  }
+
+  public void displayAllStudents(List<Student> students) {
+    for (Student student : students) {
+      System.out.println(student);
+    }
+  }
+
+  public void displayAllBooks(List<Book> books) {
+    for (Book book : books) {
+      System.out.println(book);
+    }
+  }
+
+  public <T extends BaseModel> void displayReport(List<T> results) {
+    for (int i = 0; i < results.size(); i++)
+      System.out.printf("%d. %s\n", i, results.get(i).getDisplayName());
+  }
+
+  private void printPrompt(String prompt) {
+    System.out.print(String.format("░░░░░░░░░░░░░░░░░░░░░░░░░░║%s║══> ", prompt));
+    System.out.flush();
+  }
+
+  private void printInvalidInput() {
+    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠⃨Please enter valid characters⚠⃨>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+  }
+
+  private void clearScannerBuffer() {
+    if (scanner.hasNextLine())
+      scanner.nextLine();
+  }
+
+  private int readIntInRange(String prompt, int min, int max) {
+    while (true) {
+      printPrompt(prompt);
+      try {
+        int input = scanner.nextInt();
+        clearScannerBuffer();
+        if (input >= min && input <= max)
+          return input;
+        else {
+          printInvalidInput();
+          continue;
+        }
+      } catch (Exception e) {
+        printInvalidInput();
+        clearScannerBuffer();
+        continue;
+      }
+    }
+  }
+
+  private String readString(String prompt) {
+    printPrompt(prompt);
+    // TODO: validiate input
+    return scanner.nextLine();
+  }
+
+  private Category createNewCategory() {
+    String name = readString("Enter Category Name");
+    String description = readString("Enter Category Description");
+    libraryController.addCategory(name, description);
+    System.out.println("New category created successfully!");
+    return readCategorySelection(libraryController.getCategories());
+
+  }
+
+  private Category readCategorySelection(List<Category> categories) {
+    if (categories == null || categories.size() == 0) {
+      System.out.println("No categories available");
+      System.out.println("Creating a new category...");
+
+      return createNewCategory();
     }
 
-    public void getBookISBNForOperation() {
+    for (int i = 0; i < categories.size(); i++)
+      System.out.println(String.format("%d. %s", i, categories.get(i).getDisplayName()));
 
+    System.out.println(String.format("%d. %s", categories.size(), "Add new category"));
+
+    int choice = readIntInRange("Choose an option", 0, categories.size());
+    if (choice == categories.size())
+      return createNewCategory();
+    else
+      return categories.get(choice);
+  }
+
+  private <T extends BaseModel> T readSelection(String prompt, List<T> options) {
+    if (options == null || options.size() == 0)
+      return null;
+
+    for (int i = 0; i < options.size(); i++) {
+      System.out.println(String.format("%d. %s", i, options.get(i).getDisplayName()));
     }
 
-    public String getBookTitleForSearch() {
-        Scanner gBTFS = new Scanner(System.in);
-        String T;
-        System.out.print("░░░░░░░░░░░░░░░░░░░░░░░░░░║Enter The Book Title║══> ");
-        T = gBTFS.nextLine();
-        return T;
-    }
-
-    public void getStudentIdForLoan() {
-    // TODO: Implement method 'getStudentIdForLoan'.
-    throw new UnsupportedOperationException("Unimplemented method 'getStudentIdForLoan'");
-    }
-
-    public void getBookISBNForLoan() {
-    // TODO: Implement method 'getBookISBNForLoan'.
-    throw new UnsupportedOperationException("Unimplemented method 'getBookISBNForLoan'");
-    }
-
-    public void displayStudentDetails(Student student) {
-    // TODO: Implement method 'displayStudentDetails'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayStudentDetails'");
-    }
-
-    public void displayBookDetails(Book book) {
-
-    }
-
-    public void getBookDetailsForCreation() {
-        // TODO: Implement method 'getBookDetailsForCreation'.
-        throw new UnsupportedOperationException("Unimplemented method 'getBookDetailsForCreation'");
-    }
-    
-    public void displayLoanDetails(Loan loan) {
-        // TODO: Implement method 'displayLoanDetails'.
-        throw new UnsupportedOperationException("Unimplemented method 'displayLoanDetails'");
-    }
-
-    public void displayAllStudents(List<Student> students) {
-        System.out.println();
-    }
-
-    public void displayAllBooks(List<Book> books) {
-    // TODO: Implement method 'displayAllBooks'.
-    throw new UnsupportedOperationException("Unimplemented method 'displayAllBooks'");
-    }
-
-    public void displayReport(List<?> results) {
-
-    }
+    return options.get(readIntInRange(prompt, 0, options.size() - 1));
+  }
 }

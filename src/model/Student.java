@@ -1,8 +1,6 @@
 package model;
 
-import jsonlib.JSONSerializable;
-
-public abstract class Student implements JSONSerializable {
+public abstract class Student extends BaseModel {
   protected String studentId;
   protected String firstName;
   protected String lastName;
@@ -51,4 +49,8 @@ public abstract class Student implements JSONSerializable {
     return this.major;
   }
 
+  @Override
+  public String getDisplayName() {
+    return String.format("%s %s (%s)", firstName, lastName, studentId);
+  }
 }
