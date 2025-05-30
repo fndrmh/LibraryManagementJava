@@ -36,11 +36,11 @@ public class Library {
   }
 
   public void removeBook(String isbn) {
-    for (Book book : books) {
-      if (book.getIsbn().equals(isbn)) {
-        books.remove(book);
+    for (int i = books.size() - 1; i >= 0; i--)
+      if (books.get(i).getIsbn().equals(isbn)) {
+        books.remove(i);
+        return;
       }
-    }
   }
 
   public Book searchBookByTitle(String title) {
@@ -84,11 +84,11 @@ public class Library {
   }
 
   public void removeStudent(String studentId) {
-    for (Student student : students) {
-      if (student.getStudentId().equals(studentId)) {
-        students.remove(student);
+    for (int i = students.size() - 1; i >= 0; i--)
+      if (students.get(i).getStudentId().equals(studentId)) {
+        students.remove(i);
+        return;
       }
-    }
   }
 
   public Student searchStudentById(String studentId) {
@@ -125,13 +125,12 @@ public class Library {
   }
 
   public boolean returnBook(Book book) {
-    for (Loan loan : loans) {
-      if (loan.getBook().equals(book)) {
-        loans.remove(loan);
-        loan.getBook().returnBook();
+    for (int i = loans.size() - 1; i >= 0; i--)
+      if (loans.get(i).getBook().equals(book)) {
+        loans.remove(i);
         return true;
       }
-    }
+
     return false;
   }
 
