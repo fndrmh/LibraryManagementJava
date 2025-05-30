@@ -317,7 +317,7 @@ public class UserInterface {
         case 1: {
           List<Category> categories = libraryController.getCategories();
           if (categories == null || categories.size() == 0) {
-            System.out.println("No categories available rightt now!");
+            System.out.println("No categories available right now!");
             continue;
           }
           Category category = readSelection("Choose a category", categories);

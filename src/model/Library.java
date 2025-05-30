@@ -127,6 +127,7 @@ public class Library {
   public boolean returnBook(Book book) {
     for (int i = loans.size() - 1; i >= 0; i--)
       if (loans.get(i).getBook().equals(book)) {
+        loans.get(i).getBook().returnBook();
         loans.remove(i);
         return true;
       }
@@ -154,8 +155,8 @@ public class Library {
 
   public List<Book> getBooksByCategory(Category category) {
     List<Book> booksByCategory = new ArrayList<>();
-    for (Book book : booksByCategory) {
-      if (book.getCategory().getName().equals(category.getName())) {
+    for (Book book : books) {
+      if (book.getCategory().equals(category)) {
         booksByCategory.add(book);
       }
     }
