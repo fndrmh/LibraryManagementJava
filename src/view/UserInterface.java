@@ -261,12 +261,38 @@ public class UserInterface {
             printLoanMenu();
             int choice = readIntInRange("Enter a number", 0, 2);
             switch (choice) {
-                case 1:
-                    // TODO: implement check out books
+                case 1: {
+                    String studentID = readString("Enter you Student ID");
+                    Student student = libraryController.searchStudent(studentID);
+                    if (student == null) {
+                      System.out.println("Student not found!");
+                      continue;
+                    }
+                    List<Book> availableBooks = libraryController.getAvailableBooks();
+                    if (availableBooks == null || availableBooks.size() == 0) {
+                      System.out.println("No books available right now!");
+                      continue;
+                    }
+
+                    Book selectedBook = readSelection("Which book do you want to borrow?", availableBooks);
+                    libraryController.borrowBook(selectedBook, student);
                     break;
-                case 2:
-                    // TODO: implement return books
+                }
+                case 2: {
+                    String studentID = readString("Enter you Student ID");
+                    if (libraryController.searchStudent(studentID) == null) {
+                      System.out.println("Student not found!");
+                      continue;
+                    }
+                    List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
+                    if (books == null || books.size() == 0) {
+                      System.out.println("You haven't borrowed any book!");
+                      continue;
+                    }
+                    Book selectedBook = readSelection("Which book do you want to return?", books);
+                    libraryController.returnBook(selectedBook);
                     break;
+                }
                 case 0:
                     return;
                 default:
