@@ -90,6 +90,10 @@ public class LibraryController {
     return library.getStudentsByMajor(major);
   }
 
+  public List<Category> getCategories() {
+    return library.getCategories();
+  }
+
   public void saveData() {
     fileDataModel.saveBooks(library.getBooks());
     fileDataModel.saveCategories(library.getCategories());

@@ -8,7 +8,7 @@ import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
 import jsonlib.types.JSONNumber;
 
-public class Loan implements JSONSerializable {
+public class Loan extends BaseModel {
   private Book book;
   private Student student;
   private Date loanDate;
@@ -56,6 +56,11 @@ public class Loan implements JSONSerializable {
   }
 
   @Override
+  public String getDisplayName() {
+    return String.format("%s borrowed %s", student.getDisplayName(), book.getDisplayName());
+  }
+
+  @Override
   public JSONObject serialize() {
     JSONDict result = new JSONDict();
 
@@ -77,5 +82,4 @@ public class Loan implements JSONSerializable {
 
     return new Loan(book, student, new Date(loanDateValue.getValue()), new Date(dueDateValue.getValue()));
   }
-
 }

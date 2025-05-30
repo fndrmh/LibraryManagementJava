@@ -5,7 +5,7 @@ import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
 
-public class Book implements JSONSerializable {
+public class Book extends BaseModel {
   private String title;
   private String author;
   private String isbn;
@@ -61,6 +61,11 @@ public class Book implements JSONSerializable {
   public String toString() {
     return String.format("%s\n\tAuthor: %s\n\tCategory: %s\n\tISBN: %s\n\tPublication Year: %d\n\tAvailable: %s\n",
         title, author, category, isbn, publicationYear, isBorrowed ? "No" : "Yes");
+  }
+
+  @Override
+  public String getDisplayName() {
+    return String.format("%s by %s (%s)", title, author, isbn);
   }
 
   @Override

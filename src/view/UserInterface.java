@@ -206,8 +206,8 @@ public class UserInterface {
                     String author = readString("Enter the author");
                     String isbn = readString("Enter the ISBN");
                     int publicationYear = readIntInRange("Enter the publication year", 1000, 3000);
-                    // TODO: print list of available categories and let the user choose one or define one
-                    libraryController.addBook(title, author, isbn, null, publicationYear);
+                    Category category = readSelection("Select a category", libraryController.getCategories());
+                    libraryController.addBook(title, author, isbn, category, publicationYear);
                     break;
                 }
                 case 2: {
@@ -348,5 +348,16 @@ public class UserInterface {
       printPrompt(prompt);
       // TODO: validiate input
       return scanner.nextLine();
+    }  
+
+    private <T extends BaseModel> T readSelection(String prompt, List<T> options) {
+      if (options == null || options.size() == 0)
+        return null;
+
+      for (int i = 0; i < options.size(); i++) { 
+        System.out.println(String.format("%d. %s", i, options.get(i).getDisplayName()));
+      }
+
+      return options.get(readIntInRange(prompt, 0, options.size()-1));
     }
 }

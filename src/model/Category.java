@@ -1,10 +1,9 @@
 package model;
 
-import jsonlib.JSONSerializable;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
 
-public class Category implements JSONSerializable {
+public class Category extends BaseModel {
   private String name;
   private String description;
 
@@ -24,10 +23,20 @@ public class Category implements JSONSerializable {
   }
 
   @Override
+  public String toString() {
+    return String.format("%s (%s)", name, description);
+  }
+
+  @Override
+  public String getDisplayName() {
+    return name;
+  }
+
+  @Override
   public JSONObject serialize() {
     JSONDict result = new JSONDict();
 
-    result.put("class", JSONObject.fromString("Book"));
+    result.put("class", JSONObject.fromString("Category"));
     result.put("name", JSONObject.fromString(name));
     result.put("description", JSONObject.fromString(description));
 
