@@ -103,7 +103,7 @@ public class UserInterface {
 
   public void printLoanMenu() {
     System.out.println(
-            "                                ██╗      █████╗  █████╗ ███╗  ██╗                                \n"+
+            "                                ██╗      █████╗  █████╗ ███╗  ██╗                                \n" +
             "██████╗██████╗██████╗██████╗    ██║     ██╗  ██╗██╗  ██╗████╗ ██╗    ██████╗██████╗██████╗██████╗\n" +
             "╚═════╝╚═════╝╚═════╝╚═════╝    ██║     ██║  ██║███████║██╔██╗██║    ╚═════╝╚═════╝╚═════╝╚═════╝\n" +
             "██████╗██████╗██████╗██████╗    ██║     ██║  ██║██╔══██║██║╚████║    ██████╗██████╗██████╗██████╗\n" +
@@ -132,6 +132,7 @@ public class UserInterface {
 
   public void displayMainMenu() {
     while (true) {
+      clearScreen();
       printMainMenu();
       int choice = readIntInRange("Enter a number", 0, 4);
       switch (choice) {
@@ -158,6 +159,7 @@ public class UserInterface {
 
   public void displayMemberMenu() {
     while (true) {
+      clearScreen();
       printManageUsersMenu();
       int choice = readIntInRange("Enter a number", 0, 5);
       switch (choice) {
@@ -168,6 +170,8 @@ public class UserInterface {
           String major = readString("Enter the Student Major");
           int enrollmentYear = readIntInRange("Enter the Student Enrollment Year", 1000, 3000);
           libraryController.addUndergraduateStudent(studentID, firstName, lastName, major, enrollmentYear);
+          printSuccess("New student added successfully!");
+          pause();
           break;
         }
         case 2: {
@@ -178,17 +182,17 @@ public class UserInterface {
           String supervisor = readString("Enter the Student Supervisor");
           String thesisTitle = readString("Enter the Student Thesis Title");
           libraryController.addGraduateStudent(studentID, firstName, lastName, major, supervisor, thesisTitle);
+          printSuccess("New student added successfully!");
+          pause();
           break;
         }
         case 3: {
           Student student = libraryController.searchStudent(readString("Enter Student ID"));
-          if (student == null) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Student not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-          }
+          if (student == null)
+            printError("Student not found!");
           else
             System.out.println(student);
+          pause();
           break;
         }
         case 4: {
@@ -198,6 +202,7 @@ public class UserInterface {
         }
         case 5:
           displayAllStudents(libraryController.getAllStudents());
+          pause();
           break;
         case 0:
           return;
@@ -209,6 +214,7 @@ public class UserInterface {
 
   public void displayBookMenu() {
     while (true) {
+      clearScreen();
       printManageBooksMenu();
       int choice = readIntInRange("Enter a number", 0, 4);
       switch (choice) {
@@ -220,6 +226,8 @@ public class UserInterface {
           List<Category> categories = libraryController.getCategories();
           Category category = readCategorySelection(categories);
           libraryController.addBook(title, author, isbn, category, publicationYear);
+          printSuccess("New book added successfully!");
+          pause();
           break;
         }
         case 2: {
@@ -232,6 +240,7 @@ public class UserInterface {
           break;
         case 4:
           displayAllBooks(libraryController.getAvailableBooks());
+          pause();
           break;
         case 0:
           return;
@@ -242,30 +251,27 @@ public class UserInterface {
   }
 
   public void displaySearchBookMenu() {
+    clearScreen();
     printSearchBookMenu();
     int choice = readIntInRange("Enter a number", 0, 2);
     switch (choice) {
       case 1: {
         Book book = libraryController.searchBookByTitle(readString("Enter Book Title"));
-        if (book == null){
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Book not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-        }
+        if (book == null)
+          printError("Book not found!");
         else
           System.out.println(book);
+        pause();
         break;
       }
       case 2: {
         String isbn = readString("Enter the book ISBN");
         Book book = libraryController.searchBookByISBN(isbn);
-        if (book == null) {
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Book not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-          System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-        }
+        if (book == null)
+          printError("Book not found!");
         else
           System.out.println(book);
+        pause();
         break;
       }
       case 0:
@@ -276,6 +282,7 @@ public class UserInterface {
 
   public void displayLoanMenu() {
     while (true) {
+      clearScreen();
       printLoanMenu();
       int choice = readIntInRange("Enter a number", 0, 2);
       switch (choice) {
@@ -283,40 +290,40 @@ public class UserInterface {
           String studentID = readString("Enter you Student ID");
           Student student = libraryController.searchStudent(studentID);
           if (student == null) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Student not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("Student not found!");
+            pause();
             continue;
           }
           List<Book> availableBooks = libraryController.getAvailableBooks();
           if (availableBooks == null || availableBooks.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ No books available right now! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("No books available right now!");
+            pause();
             continue;
           }
 
           Book selectedBook = readSelection("Which book do you want to borrow?", availableBooks);
           libraryController.borrowBook(selectedBook, student);
+          printSuccess("The book has been borrowed successfully!");
+          pause();
           break;
         }
         case 2: {
           String studentID = readString("Enter your Student ID");
           if (libraryController.searchStudent(studentID) == null) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Student not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("Student not found!");
+            pause();
             continue;
           }
           List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
           if (books == null || books.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ You haven't borrowed any book! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("You haven't borrowed any book!");
+            pause();
             continue;
           }
           Book selectedBook = readSelection("Which book do you want to return?", books);
           libraryController.returnBook(selectedBook);
+          printSuccess("The book has been returned successfully!");
+          pause();
           break;
         }
         case 0:
@@ -329,56 +336,55 @@ public class UserInterface {
 
   public void displayReportMenu() {
     while (true) {
+      clearScreen();
       printReportsMenu();
       int choice = readIntInRange("Enter a number", 0, 3);
       switch (choice) {
         case 1: {
           List<Category> categories = libraryController.getCategories();
           if (categories == null || categories.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░<<<⚠ No categories available right now! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("No categories available right now!");
+            pause();
             continue;
           }
           Category category = readSelection("Choose a category", categories);
           List<Book> books = libraryController.getBooksByCategory(category);
           if (books == null || books.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░<<<⚠ No books available in this category ⚠>>>░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("No books available in this category!");
+            pause();
             continue;
           }
           displayReport(books);
+          pause();
           break;
         }
         case 2: {
           String studentID = readString("Enter your Student ID");
           if (libraryController.searchStudent(studentID) == null) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Student not found! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("Student not found!");
+            pause();
             continue;
           }
           List<Book> books = libraryController.getBorrowedBooksByStudent(studentID);
           if (books == null || books.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ You haven't borrowed any book! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("You haven't borrowed any book!");
+            pause();
             continue;
           }
           displayReport(books);
+          pause();
           break;
         }
         case 3: {
           String major = readString("Enter a major");
           List<Student> students = libraryController.getStudentsByMajor(major);
           if (students == null || students.size() == 0) {
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ No students found in this major! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░");
-            System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+            printError("No students found in this major!");
+            pause();
             continue;
           }
           displayReport(students);
+          pause();
           break;
         }
         case 0:
@@ -412,9 +418,33 @@ public class UserInterface {
   }
 
   private void printInvalidInput() {
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ Please enter valid characters ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    printError("Please enter valid characters!");
+  }
+
+  public void printMessage(String msg, String emoji) {
+    String border = "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░";
+    String formattedMsg = String.format("░░░<<<%s %s %s>>>░░░", emoji, msg, emoji);
+
+    int totalPadding = border.length() - formattedMsg.length();
+    int leftPadding = totalPadding / 2;
+    int rightPadding = totalPadding - leftPadding;
+    String paddedMsg = "░".repeat(leftPadding) + formattedMsg + "░".repeat(rightPadding);
+
+    System.out.println(border);
+    System.out.println(paddedMsg);
+    System.out.println(border);
+  }
+  
+  public void printError(String msg) {
+    printMessage(msg, "⚠ ");
+  }
+
+  public void printSuccess(String msg) {
+    printMessage(msg, "✔ ");
+  }
+
+  public void printInfo(String msg) {
+    printMessage(msg, "ⓘ");
   }
 
   private void clearScannerBuffer() {
@@ -452,19 +482,15 @@ public class UserInterface {
     String name = readString("Enter Category Name");
     String description = readString("Enter Category Description");
     libraryController.addCategory(name, description);
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░<<<✅New category created successfully!✅>>>░░░░░░░░░░░░░░░░░░░░░░░");
-    System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    printSuccess("New category created successfully!");
     return readCategorySelection(libraryController.getCategories());
 
   }
 
   private Category readCategorySelection(List<Category> categories) {
     if (categories == null || categories.size() == 0) {
-      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<⚠ No categories available! ⚠>>>░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░<<<✔ Creating a new category... ✔>>>░░░░░░░░░░░░░░░░░░░░░░░░░░");
-      System.out.println("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+      printError("No categories available!");
+      printInfo("Creating a new category...");
       return createNewCategory();
     }
 
@@ -489,5 +515,24 @@ public class UserInterface {
     }
 
     return options.get(readIntInRange(prompt, 0, options.size() - 1));
+  }
+
+  public void clearScreen() {
+    System.out.print("\033[H\033[2J");  
+    System.out.flush();
+  }
+
+  public static void pause() {
+    System.out.print("Press Enter to continue...");
+    System.out.flush();
+    try {
+      System.in.read();
+      // Clear the input buffer
+      while (System.in.available() > 0) {
+        System.in.read();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
