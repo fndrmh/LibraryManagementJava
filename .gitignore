@@ -47,3 +47,5 @@ students.json
 books.json
 categories.json
 loans.json
+
+.gradle/
