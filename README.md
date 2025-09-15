@@ -16,6 +16,11 @@ A library management project written in Java using MVC model and JavaFX.
 - JavaFX SDK 17+
 - Gradle 9+
 
+### Arch Linux
+```
+sudo pacman -Syyu jdk-openjdk gradle
+```
+
 ## Build & Run
 ```bash
 git clone https://github.com/rzr8i/LibraryManagementJava.git
