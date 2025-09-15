@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import data.FileDataModel;
+import jsonlib.JSONSerializableFactory;
 
 public class Library {
   private List<Book> books;
@@ -11,14 +13,39 @@ public class Library {
   private List<Category> categories;
   private List<Loan> loans;
 
+  private FileDataModel fileDataModel;
+
   // Constructor
   public Library() {
     books = new ArrayList<>();
     students = new ArrayList<>();
     categories = new ArrayList<>();
     loans = new ArrayList<>();
+
+    JSONSerializableFactory.registerType("UndergraduateStudent", UndergraduateStudent.class);
+    JSONSerializableFactory.registerType("GraduateStudent", GraduateStudent.class);
+    JSONSerializableFactory.registerType("Book", Book.class);
+    JSONSerializableFactory.registerType("Category", Category.class);
+    JSONSerializableFactory.registerType("Loan", Loan.class);
+
+    fileDataModel = FileDataModel.getInstance();
   }
 
+  public void loadData() {
+    this.setBooks(fileDataModel.getBooks());
+    this.setCategories(fileDataModel.getCategories());
+    this.setLoans(fileDataModel.getLoans());
+    this.setStudents(fileDataModel.getStudents());
+  }
+
+  public void saveData() {
+    fileDataModel.updateBooks(this.getBooks());
+    fileDataModel.updateCategories(this.getCategories());
+    fileDataModel.updateLoans(this.getLoans());
+    fileDataModel.updateStudents(this.getAllStudents());
+    fileDataModel.saveAll();
+  }
+  
   public void setBooks(List<Book> books) {
     this.books = books;
   }

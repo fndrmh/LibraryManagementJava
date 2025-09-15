@@ -27,7 +27,7 @@ public class Category extends BaseModel {
 
   @Override
   public String toString() {
-    return String.format("%s (%s)", name, description);
+    return this.name;
   }
 
   @Override

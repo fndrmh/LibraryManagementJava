@@ -21,36 +21,68 @@ public class FileDataModel {
   private static final String CATEGORIES_FILEPATH = "categories.json";
   private static final String LOANS_FILEPATH = "loans.json";
 
-  public List<Book> loadBooks() {
-    return loadFromFile(BOOKS_FILEPATH);
+  private List<Book> books;
+  private List<Category> categories;
+  private List<Student> students;
+  private List<Loan> loans;
+
+  private static FileDataModel instance;
+
+  private FileDataModel() {
+    this.loadAll();
   }
 
-  public List<Student> loadStudents() {
-    return loadFromFile(STUDENTS_FILEPATH);
+  public static FileDataModel getInstance() {
+    if (instance == null)
+      instance = new FileDataModel();
+
+    return instance;
   }
 
-  public List<Category> loadCategories() {
-    return loadFromFile(CATEGORIES_FILEPATH);
+  public List<Book> getBooks() {
+    return this.books;
   }
 
-  public List<Loan> loadLoans() {
-    return loadFromFile(LOANS_FILEPATH);
+  public List<Student> getStudents() {
+    return this.students;
   }
 
-  public void saveBooks(List<Book> books) {
-    writeToFile(BOOKS_FILEPATH, JSONObject.fromList(books).toString());
+  public List<Loan> getLoans() {
+    return this.loans;
   }
 
-  public void saveStudents(List<Student> students) {
-    writeToFile(STUDENTS_FILEPATH, JSONObject.fromList(students).toString());
+  public List<Category> getCategories() {
+    return this.categories;
   }
 
-  public void saveCategories(List<Category> categories) {
-    writeToFile(CATEGORIES_FILEPATH, JSONObject.fromList(categories).toString());
+  public void updateBooks(List<Book> books) {
+    this.books = books;
   }
 
-  public void saveLoans(List<Loan> loans) {
-    writeToFile(LOANS_FILEPATH, JSONObject.fromList(loans).toString());
+  public void updateCategories(List<Category> categories) {
+    this.categories = categories;
+  }
+
+  public void updateStudents(List<Student> students) {
+    this.students = students;
+  }
+
+  public void updateLoans(List<Loan> loans) {
+    this.loans = loans;
+  }
+
+  private void loadAll() {
+    this.books = loadFromFile(BOOKS_FILEPATH);
+    this.students = loadFromFile(STUDENTS_FILEPATH);
+    this.categories = loadFromFile(CATEGORIES_FILEPATH);
+    this.loans = loadFromFile(LOANS_FILEPATH);
+  }
+
+  public void saveAll() {
+    writeToFile(BOOKS_FILEPATH, JSONObject.fromList(this.books).toString());
+    writeToFile(STUDENTS_FILEPATH, JSONObject.fromList(this.students).toString());
+    writeToFile(CATEGORIES_FILEPATH, JSONObject.fromList(this.categories).toString());
+    writeToFile(LOANS_FILEPATH, JSONObject.fromList(this.loans).toString());
   }
 
   public void writeToFile(String filePath, String data) {

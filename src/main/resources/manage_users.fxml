@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.LibraryController" alignment="CENTER" spacing="20" style="-fx-background-color: #110e1b; -fx-padding: 20;">
+    <Label text="Manage Users" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="text"/>
+    <Button text="Add Student" fx:id="addStudentButton" onAction="#handleAddStudentClick" styleClass="primary" />
+    <Button text="List All Students" fx:id="listAllStudentsButton" onAction="#handleListAllStudentsClick" styleClass="primary" />
+    <Button text="Back to Main Menu" fx:id="back2mainmenuButton" onAction="#handleBackButton" styleClass="button" />
+</VBox>

@@ -1,115 +1,130 @@
 package controller;
 
-import data.FileDataModel;
-import jsonlib.JSONSerializableFactory;
+import java.io.IOException;
 
-import java.util.List;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import model.Library;
+import view.UserInterface;
 
-import model.*;
-
-public class LibraryController {
+public class LibraryController implements Controller {
   private Library library;
-  private FileDataModel fileDataModel;
+  private UserInterface userInterface;
 
-  public LibraryController() {
-    library = new Library();
-    fileDataModel = new FileDataModel();
-    JSONSerializableFactory.registerType("UndergraduateStudent", UndergraduateStudent.class);
-    JSONSerializableFactory.registerType("GraduateStudent", GraduateStudent.class);
-    JSONSerializableFactory.registerType("Book", Book.class);
-    JSONSerializableFactory.registerType("Category", Category.class);
-    JSONSerializableFactory.registerType("Loan", Loan.class);
+  @FXML
+  private Button manageUsersButton;
+  @FXML
+  private Button manageBooksButton;
+  @FXML
+  private Button loansButton;
+  @FXML
+  private Button reportsButton;
 
-    loadData();
+  @FXML
+  private void handleManageUsersClick() {
+    try {
+      userInterface.loadPage("/manage_users.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void addUndergraduateStudent(String studentId, String firstName, String lastName, String major,
-      int enrollmentYear) {
-    Student student = new UndergraduateStudent(studentId, firstName, lastName, major, enrollmentYear);
-    library.addStudent(student);
+  @FXML
+  private void handleManageBooksClick() {
+    try {
+      userInterface.loadPage("/manage_books.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void addGraduateStudent(String studentId, String firstName, String lastName, String major, String supervisor,
-      String thesisTitle) {
-    Student student = new GraduateStudent(studentId, firstName, lastName, major, supervisor, thesisTitle);
-    library.addStudent(student);
+  @FXML
+  private void handleLoansClick() {
+    try {
+      userInterface.loadPage("/loans.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public Student searchStudent(String studentId) {
-    return library.searchStudentById(studentId);
+  @FXML
+  private void handleExitClick() {
+    Platform.exit();
   }
 
-  public void removeStudent(String studentId) {
-    library.removeStudent(studentId);
+  @FXML
+  private void handleAddStudentClick() {
+    try {
+      userInterface.loadPage("/add_student.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public List<Student> getAllStudents() {
-    return library.getAllStudents();
+  @FXML
+  private void handleListAllStudentsClick() {
+    try {
+      userInterface.loadPage("/list_all_students.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void addBook(String title, String author, String isbn, Category category, int publicationYear) {
-    Book book = new Book(title, author, isbn, category, publicationYear, false);
-    library.addBook(book);
+  @FXML
+  private void handleListAllBooksClick() {
+    try {
+      userInterface.loadPage("/list_all_books.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void addCategory(String name, String description) {
-    Category category = new Category(name, description);
-    library.addCategory(category);
+  @FXML
+  private void handleAddBookClick() {
+    try {
+      userInterface.loadPage("/add_book.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public void removeBook(String isbn) {
-    library.removeBook(isbn);
+
+  @FXML
+  private void handleCheckOutBooksClick() {
+    try {
+      userInterface.loadPage("/check_out_books.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public Book searchBookByTitle(String title) {
-    return library.searchBookByTitle(title);
+
+  @FXML
+  private void handleReturnBooksClick() {
+    try {
+      userInterface.loadPage("/return_books.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public Book searchBookByISBN(String isbn) {
-    return library.searchBookByISBN(isbn);
+  @FXML
+  private void handleBackButton() {
+    try {
+      userInterface.loadPage("/main_menu.fxml");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public List<Book> getAvailableBooks() {
-    return library.getAvailableBooks();
+  @Override
+  public void setUserInterface(UserInterface ui) {
+    this.userInterface = ui;
   }
 
-  public void borrowBook(Book book, Student student) {
-    library.borrowBook(book, student);
-
+  @Override
+  public void setLibrary(Library library) {
+    this.library = library;
   }
-
-  public void returnBook(Book book) {
-    library.returnBook(book);
-  }
-
-  public List<Book> getBorrowedBooksByStudent(String studentId) {
-    return library.getBorrowedBooksByStudent(studentId);
-  }
-
-  public List<Book> getBooksByCategory(Category category) {
-    return library.getBooksByCategory(category);
-  }
-
-  public List<Student> getStudentsByMajor(String major) {
-    return library.getStudentsByMajor(major);
-  }
-
-  public List<Category> getCategories() {
-    return library.getCategories();
-  }
-
-  public void saveData() {
-    fileDataModel.saveBooks(library.getBooks());
-    fileDataModel.saveCategories(library.getCategories());
-    fileDataModel.saveLoans(library.getLoans());
-    fileDataModel.saveStudents(library.getAllStudents());
-  }
-
-  public void loadData() {
-    library.setBooks(fileDataModel.loadBooks());
-    library.setCategories(fileDataModel.loadCategories());
-    library.setLoans(fileDataModel.loadLoans());
-    library.setStudents(fileDataModel.loadStudents());
-  }
-
 }

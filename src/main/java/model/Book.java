@@ -2,7 +2,6 @@ package model;
 
 import java.util.Objects;
 
-import jsonlib.JSONSerializable;
 import jsonlib.JSONSerializableFactory;
 import jsonlib.types.JSONObject;
 import jsonlib.types.JSONDict;
@@ -57,6 +56,10 @@ public class Book extends BaseModel {
 
   public boolean getIsBorrowed() {
     return this.isBorrowed;
+  }
+
+  public String getIsAvailable() {
+    return this.getIsBorrowed() ? "No" : "Yes";
   }
 
   @Override

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ListAllStudentsController" alignment="CENTER" spacing="20" style="-fx-background-color: #110e1b; -fx-padding: 20;">
+
+  <StackPane>
+    <Label text="All Students" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="text"/>
+    <Button text="← Back"
+      onAction="#handleBackButton"
+      userData="/manage_users.fxml"
+      styleClass="secondary-button"
+      StackPane.alignment="TOP_LEFT"
+      style="-fx-margin: 10;"/>
+  </StackPane>
+
+
+  <HBox spacing="10" alignment="CENTER_LEFT">
+    <ComboBox fx:id="searchByComboBox" prefWidth="120" maxWidth="120"/>
+    <AnchorPane HBox.hgrow="ALWAYS"> 
+      <TextField fx:id="searchField" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" promptText="Search" />
+      <Button fx:id="clearSearchButton" onAction="#handleClearSearchClick" text="✖" styleClass="icon-button"
+        AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" visible="false" managed="false"/>
+    </AnchorPane>
+  </HBox>
+
+
+  <TableView fx:id="studentTable" prefWidth="500">
+    <columns>
+      <TableColumn text="ID" fx:id="idColumn"/>
+      <TableColumn text="First Name" fx:id="firstNameColumn"/>
+      <TableColumn text="Last Name" fx:id="lastNameColumn"/>
+      <TableColumn text="Major" fx:id="majorColumn"/>
+    </columns>
+  </TableView>
+
+  <GridPane fx:id="detailPanel"
+    hgap="30"
+    vgap="10"
+    alignment="CENTER_LEFT"
+    style="-fx-background-color: #471396; -fx-padding: 15; -fx-background-radius: 10;"
+    visible="false"
+    managed="false">
+
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS"/>
+    <ColumnConstraints hgrow="ALWAYS"/>
+  </columnConstraints>
+
+  <HBox spacing="6" GridPane.rowIndex="0" GridPane.columnIndex="0">
+    <Label text="ID:" styleClass="field-label"/>
+    <Label fx:id="idLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox spacing="6" GridPane.rowIndex="0" GridPane.columnIndex="1">
+    <Label text="Type:" styleClass="field-label"/>
+    <Label fx:id="typeLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <Button fx:id="removeButton" styleClass="icon-button" onAction="#handleRemoveButtonClick"
+    text="🗑"
+    GridPane.rowIndex="0"
+    GridPane.columnIndex="1"
+    GridPane.halignment="RIGHT"/>
+
+  <HBox spacing="6" GridPane.rowIndex="1" GridPane.columnIndex="0">
+    <Label text="First Name:" styleClass="field-label"/>
+    <Label fx:id="firstNameLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox spacing="6" GridPane.rowIndex="1" GridPane.columnIndex="1">
+    <Label text="Last Name:" styleClass="field-label"/>
+    <Label fx:id="lastNameLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox spacing="6" GridPane.rowIndex="2" GridPane.columnIndex="0">
+    <Label text="Major:" styleClass="field-label"/>
+    <Label fx:id="majorLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox fx:id="enrollmentYearBox" spacing="6" GridPane.rowIndex="2" GridPane.columnIndex="1">
+    <Label text="Enrollment Year:" styleClass="field-label"/>
+    <Label fx:id="enrollmentYearLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox fx:id="supervisorBox" spacing="6" GridPane.rowIndex="3" GridPane.columnIndex="0">
+    <Label text="Supervisor:" styleClass="field-label"/>
+    <Label fx:id="supervisorLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+
+  <HBox fx:id="thesisTitleBox" spacing="6" GridPane.rowIndex="3" GridPane.columnIndex="1">
+    <Label text="Thesis Title:" styleClass="field-label"/>
+    <Label fx:id="thesisTitleLabel" text="" styleClass="field-value" alignment="CENTER_LEFT"/>
+  </HBox>
+</GridPane>
+
+</VBox>

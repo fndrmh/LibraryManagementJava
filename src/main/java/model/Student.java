@@ -49,6 +49,10 @@ public abstract class Student extends BaseModel {
     return this.major;
   }
 
+  public String getType() {
+    return this.getClass().getSimpleName().equals("GraduateStudent") ? "Graduate" : "Undergraduate";
+  }
+
   @Override
   public String getDisplayName() {
     return String.format("%s %s (%s)", firstName, lastName, studentId);
