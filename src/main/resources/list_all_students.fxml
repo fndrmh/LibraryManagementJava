@@ -59,7 +59,7 @@
   </HBox>
 
   <Button fx:id="removeButton" styleClass="icon-button" onAction="#handleRemoveButtonClick"
-    text="🗑"
+    text=""
     GridPane.rowIndex="0"
     GridPane.columnIndex="1"
     GridPane.halignment="RIGHT"/>

@@ -55,7 +55,7 @@
     alignment="CENTER_RIGHT"
     spacing="10">
     <Button fx:id="removeButton" styleClass="icon-button" onAction="#handleRemoveButtonClick"
-      text="🗑"/>
+      text=""/>
     <Button fx:id="borrowButton" styleClass="borrow-button" onAction="#handleBorrowButtonClick"
       text="Borrow"/>
   </HBox>

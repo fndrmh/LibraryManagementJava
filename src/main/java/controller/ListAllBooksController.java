@@ -18,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import model.Book;
 import model.Library;
@@ -50,6 +52,7 @@ public class ListAllBooksController implements Controller {
   @FXML private TextField searchField;
   @FXML private Button clearSearchButton; 
   @FXML private Button borrowButton;
+  @FXML private Button removeButton;
 
   public void initialize() {
     searchByComboBox.getItems().addAll("ISBN", "Title", "Author", "Category", "Publication Year");
@@ -82,6 +85,14 @@ public class ListAllBooksController implements Controller {
       yearLabel.setText(selectedBook.getPublicationYear().toString());
       availableLabel.setText(selectedBook.getIsAvailable().toString());
     });
+
+    Image image = new Image(getClass().getResourceAsStream("/icons/trash-can.png"));
+    ImageView imageView = new ImageView(image);
+
+    imageView.setFitWidth(16);
+    imageView.setFitHeight(16);
+
+    removeButton.setGraphic(imageView);
   }
 
   
