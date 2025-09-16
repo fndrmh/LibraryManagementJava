@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 import jsonlib.JSONSerializableFactory;
 import model.Book;
 import model.Category;
@@ -30,6 +31,8 @@ public class UserInterface {
     JSONSerializableFactory.registerType("Category", Category.class);
     JSONSerializableFactory.registerType("Loan", Loan.class);
     library.loadData();
+
+    Font.loadFont(getClass().getResourceAsStream("/fonts/Vazirmatn.ttf"), 14);
   }
 
   public void start() throws IOException {
